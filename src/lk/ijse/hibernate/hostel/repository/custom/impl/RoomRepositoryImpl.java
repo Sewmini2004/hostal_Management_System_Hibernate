@@ -12,50 +12,39 @@ import java.util.List;
 public class RoomRepositoryImpl implements RoomRepository {
     @Override
     public List<Room> getAll(Session session) throws SQLException, ClassNotFoundException {
-
-            return session.createQuery("from Room").getResultList();
-   }
+        return session.createQuery("from Room").getResultList();
+    }
 
     @Override
     public String add(Room obj, Session session) throws SQLException, ClassNotFoundException {
         String save = (String) session.save(obj);
         return save;
-
     }
 
     @Override
-    public boolean delete(String id, Session session) throws SQLException, ClassNotFoundException {
+    public void delete(String id, Session session) throws SQLException, ClassNotFoundException {
         session.delete(id);
-        return true;
-
-
     }
 
     @Override
-    public boolean update(Room obj, Session session) throws SQLException, ClassNotFoundException {
-           session.update(obj);
-
-            return true;
-
+    public void update(Room obj, Session session) throws SQLException, ClassNotFoundException {
+        session.update(obj);
     }
 
     @Override
     public Room search(String id, Session session) throws SQLException, ClassNotFoundException {
         try {
-            return session.get(Room.class,id);
-        }catch (Exception e){
+            return session.get(Room.class, id);
+        } catch (Exception e) {
             session.getTransaction().rollback();
             return null;
         }
     }
 
     @Override
-    public boolean isExists(String id, Session session) throws SQLException, ClassNotFoundException {
-
-
-        session.get(Room.class,id);
+    public boolean isExists(String id, Session session) throws Exception {
+        session.get(Room.class, id);
         return true;
-
     }
 
 }

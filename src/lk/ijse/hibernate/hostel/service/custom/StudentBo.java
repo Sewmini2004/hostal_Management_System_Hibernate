@@ -8,12 +8,12 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface StudentBo extends SuperBo {
-    public List<StudentDTO> getAll() throws SQLException, ClassNotFoundException;
-    public boolean add(StudentDTO studentDTO) throws SQLException, ClassNotFoundException;
-    public boolean delete(String id) throws SQLException, ClassNotFoundException;
-    public boolean update(StudentDTO studentDTO) throws SQLException, ClassNotFoundException;
-    public StudentDTO search(String id) throws SQLException, ClassNotFoundException;
-    public boolean isExists(String id) throws SQLException, ClassNotFoundException;
-    public String generateNextId() throws SQLException, ClassNotFoundException;
+    public List<StudentDTO> getAll() throws Exception;
+    public boolean add(StudentDTO studentDTO) throws Exception;
+    public boolean delete(String id) throws Exception;
+    public boolean update(StudentDTO studentDTO) throws Exception;
+    public StudentDTO search(String id) throws Exception;
+    public boolean isExists(String id) throws Exception;
+    public String generateNextId() throws Exception;
 
 }

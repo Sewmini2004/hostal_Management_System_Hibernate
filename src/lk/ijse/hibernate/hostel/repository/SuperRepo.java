@@ -1,4 +1,4 @@
-package lk.ijse.hibernate.hostel.repository.util;
+package lk.ijse.hibernate.hostel.repository;
 import org.hibernate.Session;
 
 import java.io.Serializable;

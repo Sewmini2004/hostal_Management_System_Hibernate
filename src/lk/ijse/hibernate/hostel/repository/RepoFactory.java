@@ -1,4 +1,4 @@
-package lk.ijse.hibernate.hostel.repository.util;
+package lk.ijse.hibernate.hostel.repository;
 
 import lk.ijse.hibernate.hostel.repository.custom.impl.ReservationRepositoryImpl;
 import lk.ijse.hibernate.hostel.repository.custom.impl.RoomRepositoryImpl;

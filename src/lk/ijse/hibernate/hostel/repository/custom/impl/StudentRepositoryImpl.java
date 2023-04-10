@@ -14,46 +14,34 @@ public class StudentRepositoryImpl implements StudentRepository {
 
     @Override
     public List<Student> getAll(Session session) throws SQLException, ClassNotFoundException {
-
-           return session.createQuery("from Student").getResultList();
- }
+        return session.createQuery("from Student").getResultList();
+    }
 
     @Override
     public String add(Student obj, Session session) throws SQLException, ClassNotFoundException {
         String save = (String) session.save(obj);
         return save;
-
     }
 
     @Override
-    public boolean delete(String id, Session session) throws SQLException, ClassNotFoundException {
-     session.delete(id);
-     return true;
+    public void delete(String id, Session session) throws SQLException, ClassNotFoundException {
+        session.delete(id);
     }
 
     @Override
-    public boolean update(Student obj, Session session) throws SQLException, ClassNotFoundException {
-    session.update(obj);
-    return true;
-
+    public void update(Student obj, Session session) throws SQLException, ClassNotFoundException {
+        session.update(obj);
     }
 
     @Override
     public Student search(String id, Session session) throws SQLException, ClassNotFoundException {
-
-     try {
-          return session.get(Student.class,id);
-        }catch (Exception e){
-           return null;
-            }
+        return session.get(Student.class, id);
     }
 
     @Override
-    public boolean isExists(String id, Session session) throws SQLException, ClassNotFoundException {
-
-     session.get(Student.class,id);
-      return true;
-
+    public boolean isExists(String id, Session session) throws Exception {
+        session.get(Student.class, id);
+        return true;
     }
 
 }

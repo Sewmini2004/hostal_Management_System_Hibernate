@@ -9,6 +9,9 @@ import org.hibernate.Transaction;
 import java.sql.SQLException;
 import java.util.List;
 
+//mewai try-catch ain krla ar wge throw krla itpsse exception ne kyl hthgen code tk ghnn manika exception ne kyla
+//hthgena kynne api krnn hdna wde awlak nthuw weno kyla eka hrida em hthm krnn exception wisi kr kr
+
 public class ReservationRepositoryImpl implements ReservationRepository {
     @Override
     public List<Reservation> getAll(Session session) throws SQLException, ClassNotFoundException {
@@ -24,19 +27,16 @@ public class ReservationRepositoryImpl implements ReservationRepository {
     public String add(Reservation obj, Session session) throws SQLException, ClassNotFoundException {
         String save = (String) session.save(obj);
         return save;
-
     }
 
     @Override
-    public boolean delete(String id, Session session) throws SQLException, ClassNotFoundException {
+    public void delete(String id, Session session) throws SQLException, ClassNotFoundException {
         session.delete(id);
-        return true;
     }
 
     @Override
-    public boolean update(Reservation obj, Session session) throws SQLException, ClassNotFoundException {
+    public void update(Reservation obj, Session session) throws SQLException, ClassNotFoundException {
         session.update(obj);
-        return true;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class ReservationRepositoryImpl implements ReservationRepository {
     }
 
     @Override
-    public boolean isExists(String id, Session session) throws SQLException, ClassNotFoundException {
+    public boolean isExists(String id, Session session) throws Exception {
 
         session.get(Reservation.class, id);
         return true;
