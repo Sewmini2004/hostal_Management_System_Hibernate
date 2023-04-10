@@ -7,23 +7,80 @@ import lk.ijse.hibernate.hostel.entity.Reservation;
 import lk.ijse.hibernate.hostel.entity.Room;
 import lk.ijse.hibernate.hostel.entity.Student;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 public class Converter {
- public static StudentDTO fromStudent(Student student){
-  return null;
+/* From --- entity > DTO */
+/* To ---  DTO > entity */
+
+ public  StudentDTO fromStudent(Student student){
+  return new StudentDTO(
+          student.getStudentId(),
+          student.getName(),
+          student.getAddress(),
+          student.getContactNo(),
+          student.getDob(),
+          student.getGender(),
+          student.getReservations()
+  );
+
  }
- public static Student toStudent(StudentDTO studentDTO){
-  return null;
+ public  Student toStudent(StudentDTO studentDTO){
+  return new Student(
+          studentDTO.getStudentId(),
+          studentDTO.getName(),
+          studentDTO.getAddress(),
+          studentDTO.getContactNo(),
+          studentDTO.getDob(),
+          studentDTO.getGender(),
+          studentDTO.getReservations()
+  );
  }
- public static RoomDTO fromRoom(Room room){
-  return null;
+ public  RoomDTO fromRoom(Room room){
+  return new RoomDTO(
+          room.getRoomTypeId(),
+          room.getType(),
+          room.getKeyMoney(),
+          room.getQty(),
+          room.getReservations()
+  );
  }
- public static Room toRoom(RoomDTO roomDTO){
-  return null;
+
+ public  Room toRoom(RoomDTO roomDTO){
+  return new Room(
+          roomDTO.getRoomTypeId(),
+          roomDTO.getType(),
+          roomDTO.getKeyMoney(),
+          roomDTO.getQty(),
+          roomDTO.getReservations()
+  );
  }
- public static ReservationDTO fromReservation(Reservation reservation){
-  return null;
+
+
+ public  ReservationDTO fromReservation(Reservation reservation){
+  return new ReservationDTO(
+          reservation.getResId(),
+          reservation.getDate(),
+          reservation.getStatus(),
+          reservation.getKeyMoney(),
+          reservation.getPayingAmount(),
+          reservation.getStudent(),
+          reservation.getRoom()
+    );
  }
- public static Reservation toReservation(ReservationDTO reservationDTO){
-  return null;
+
+ public  Reservation toReservation(ReservationDTO reservationDTO){
+  return new Reservation(
+          reservationDTO.getResId(),
+          reservationDTO.getDate(),
+          reservationDTO.getStatus(),
+          reservationDTO.getKeyMoney(),
+          reservationDTO.getPayingAmount(),
+          reservationDTO.getStudent(),
+          reservationDTO.getRoom()
+  );
+
  }
 }
