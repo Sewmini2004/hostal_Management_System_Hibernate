@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="839.0" prefWidth="1264.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hibernate.hostel.controller.DashBoardController">
+   <children>
+      <AnchorPane prefHeight="840.0" prefWidth="264.0">
+         <children>
+            <ImageView fitHeight="756.0" fitWidth="264.0" layoutY="84.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../assests/2188.jpg" />
+               </image>
+            </ImageView>
+            <JFXButton layoutX="8.0" layoutY="367.0" prefHeight="67.0" prefWidth="251.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="                 Room Management">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font></JFXButton>
+            <JFXButton layoutX="7.0" layoutY="493.0" prefHeight="67.0" prefWidth="251.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="              Room Reservation ">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font></JFXButton>
+            <JFXButton layoutX="4.0" layoutY="234.0" prefHeight="67.0" prefWidth="251.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="              Student Management">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font></JFXButton>
+            <ImageView fitHeight="67.0" fitWidth="56.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../assests/img_4.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="71.0" layoutY="-1.0" prefHeight="85.0" prefWidth="196.0" style="-fx-background-color: E3ACF9;" text="  DashBoard">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="50.0" fitWidth="56.0" layoutX="14.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="46.0" fitWidth="56.0" layoutX="29.0" layoutY="502.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assests/img_3.png" />
+               </image></ImageView>
+            <ImageView fitHeight="50.0" fitWidth="56.0" layoutX="21.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assests/img_2.png" />
+               </image></ImageView>
+            <ImageView fitHeight="50.0" fitWidth="56.0" layoutX="14.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assests/img_1.png" />
+               </image></ImageView>
+            <JFXButton layoutX="55.0" layoutY="680.0" prefHeight="46.0" prefWidth="162.0" style="-fx-background-color: D83A56; -fx-background-radius: 20;" text="Exit" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="264.0" prefHeight="840.0" prefWidth="1023.0" style="-fx-background-color: A31ACB;" />
+   </children>
+</AnchorPane>
