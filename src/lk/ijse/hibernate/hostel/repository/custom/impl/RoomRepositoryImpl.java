@@ -12,53 +12,31 @@ import java.util.List;
 public class RoomRepositoryImpl implements RoomRepository {
     @Override
     public List<Room> getAll(Session session) throws SQLException, ClassNotFoundException {
-        try {
-            return session.createQuery("from Room").getResultList();
 
-        }catch (Exception e){
-            return null;
-        }    }
+            return session.createQuery("from Room").getResultList();
+   }
 
     @Override
-    public boolean add(Room obj, Session session) throws SQLException, ClassNotFoundException {
-        Transaction transaction = session.beginTransaction();
-        try{
-            Boolean save = (Boolean) session.save(obj);
-            transaction.commit();
-            return save;
+    public String add(Room obj, Session session) throws SQLException, ClassNotFoundException {
+        String save = (String) session.save(obj);
+        return save;
 
-        }catch (Exception e){
-            transaction.rollback();
-            return false;
-        }
     }
 
     @Override
     public boolean delete(String id, Session session) throws SQLException, ClassNotFoundException {
+        session.delete(id);
+        return true;
 
-        Transaction transaction = session.beginTransaction();
-        try{
-            Student load = session.load(Student.class, id);
-            session.delete(load);
-            transaction.commit();
-            return true;
-        }catch (Exception e){
-            transaction.rollback();
-            return false;
-        }
+
     }
 
     @Override
     public boolean update(Room obj, Session session) throws SQLException, ClassNotFoundException {
-        Transaction transaction = session.beginTransaction();
-        try{
-            session.update(obj);
-            transaction.commit();
+           session.update(obj);
+
             return true;
-        }catch (Exception e){
-            transaction.rollback();
-            return false;
-        }
+
     }
 
     @Override
@@ -74,14 +52,10 @@ public class RoomRepositoryImpl implements RoomRepository {
     @Override
     public boolean isExists(String id, Session session) throws SQLException, ClassNotFoundException {
 
-        Transaction transaction = session.beginTransaction();
-        try {
-            session.get(Student.class,id);
-            return true;
-        }catch (Exception e){
-            transaction.rollback();
-            return false;
-        }
+
+        session.get(Room.class,id);
+        return true;
+
     }
 
 }

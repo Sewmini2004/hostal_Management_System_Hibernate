@@ -1,4 +1,5 @@
 package lk.ijse.hibernate.hostel.service.custom.impl;
 
-public class RoomBo {
+public class ReservationBoImple {
+
 }

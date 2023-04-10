@@ -14,53 +14,28 @@ public class StudentRepositoryImpl implements StudentRepository {
 
     @Override
     public List<Student> getAll(Session session) throws SQLException, ClassNotFoundException {
-       try {
-           return session.createQuery("from Student").getResultList();
 
-       }catch (Exception e){
-           return null;
-       }
-    }
+           return session.createQuery("from Student").getResultList();
+ }
 
     @Override
-    public boolean add(Student obj, Session session) throws SQLException, ClassNotFoundException {
-        Transaction transaction = session.beginTransaction();
-        try{
-            Boolean save = (Boolean) session.save(obj);
-            transaction.commit();
-            return save;
+    public String add(Student obj, Session session) throws SQLException, ClassNotFoundException {
+        String save = (String) session.save(obj);
+        return save;
 
-        }catch (Exception e){
-            transaction.rollback();
-            return false;
-        }
     }
 
     @Override
     public boolean delete(String id, Session session) throws SQLException, ClassNotFoundException {
-        Transaction transaction = session.beginTransaction();
-        try{
-            Student load = session.load(Student.class, id);
-            session.delete(load);
-            transaction.commit();
-            return true;
-        }catch (Exception e){
-            transaction.rollback();
-            return false;
-        }
+     session.delete(id);
+     return true;
     }
 
     @Override
     public boolean update(Student obj, Session session) throws SQLException, ClassNotFoundException {
-        Transaction transaction = session.beginTransaction();
-        try{
-            session.update(obj);
-            transaction.commit();
-            return true;
-        }catch (Exception e){
-            transaction.rollback();
-           return false;
-        }
+    session.update(obj);
+    return true;
+
     }
 
     @Override
@@ -69,21 +44,16 @@ public class StudentRepositoryImpl implements StudentRepository {
      try {
           return session.get(Student.class,id);
         }catch (Exception e){
-            session.getTransaction().rollback();
            return null;
             }
     }
 
     @Override
     public boolean isExists(String id, Session session) throws SQLException, ClassNotFoundException {
-        Transaction transaction = session.beginTransaction();
-        try {
-            session.get(Room.class,id);
-            return true;
-             }catch (Exception e){
-            transaction.rollback();
-            return false;
-        }
+
+     session.get(Student.class,id);
+      return true;
+
     }
 
 }

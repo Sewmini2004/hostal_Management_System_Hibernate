@@ -15,58 +15,35 @@ public class ReservationRepositoryImpl implements ReservationRepository {
         try {
             return session.createQuery("from Reservation").getResultList();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
 
     @Override
-    public boolean add(Reservation obj, Session session) throws SQLException, ClassNotFoundException {
-        Transaction transaction = session.beginTransaction();
-        try{
-            Boolean save = (Boolean) session.save(obj);
-            transaction.commit();
-            return save;
+    public String add(Reservation obj, Session session) throws SQLException, ClassNotFoundException {
+        String save = (String) session.save(obj);
+        return save;
 
-        }catch (Exception e){
-            transaction.rollback();
-            return false;
-        }
     }
 
     @Override
     public boolean delete(String id, Session session) throws SQLException, ClassNotFoundException {
-        Transaction transaction = session.beginTransaction();
-        try{
-            Student load = session.load(Student.class, id);
-            session.delete(load);
-            transaction.commit();
-            return true;
-        }catch (Exception e){
-            transaction.rollback();
-            return false;
-        }
+        session.delete(id);
+        return true;
     }
 
     @Override
     public boolean update(Reservation obj, Session session) throws SQLException, ClassNotFoundException {
-        Transaction transaction = session.beginTransaction();
-        try{
-            session.update(obj);
-            transaction.commit();
-            return true;
-        }catch (Exception e){
-            transaction.rollback();
-            return false;
-        }
+        session.update(obj);
+        return true;
     }
 
     @Override
     public Reservation search(String id, Session session) throws SQLException, ClassNotFoundException {
         try {
-            return session.get(Reservation.class,id);
-        }catch (Exception e){
-            session.getTransaction().rollback();
+            return session.get(Reservation.class, id);
+        } catch (Exception e) {
             return null;
         }
     }
@@ -74,14 +51,9 @@ public class ReservationRepositoryImpl implements ReservationRepository {
     @Override
     public boolean isExists(String id, Session session) throws SQLException, ClassNotFoundException {
 
-        Transaction transaction = session.beginTransaction();
-        try {
-            session.get(Reservation.class,id);
-            return true;
-        }catch (Exception e){
-            transaction.rollback();
-            return false;
-        }
-    }
+        session.get(Reservation.class, id);
+        return true;
 
+
+    }
 }

@@ -1,4 +1,6 @@
 package lk.ijse.hibernate.hostel.service.util;
 
-public interface SuperBo {
+import java.io.Serializable;
+
+public interface SuperBo extends Serializable {
 }

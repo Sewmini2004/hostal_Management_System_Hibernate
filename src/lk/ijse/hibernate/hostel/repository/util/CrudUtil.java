@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CrudUtil<T extends SuperEntity> extends SuperRepo{
     public List<T> getAll(Session session) throws SQLException, ClassNotFoundException;
-    public boolean add(T obj,Session session) throws SQLException, ClassNotFoundException;
+    public String add(T obj,Session session) throws SQLException, ClassNotFoundException;
     public boolean delete(String id,Session session) throws SQLException, ClassNotFoundException;
     public boolean update(T obj,Session session) throws SQLException, ClassNotFoundException;
     public T search(String id,Session session) throws SQLException, ClassNotFoundException;
