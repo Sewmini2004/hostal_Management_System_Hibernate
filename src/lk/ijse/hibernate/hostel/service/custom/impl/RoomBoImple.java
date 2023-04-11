@@ -78,6 +78,15 @@ public class RoomBoImple implements RoomBo {
 
     @Override
     public String generateNextId() throws Exception {
-        return null;
+        List<RoomDTO> all = getAll();
+        if (all.size() > 0) {
+            String roomTypeId = all.get(all.size() - 1).getRoomTypeId();
+            String[] split = roomTypeId.split("[R]");
+            int i = Integer.parseInt(split[1]);
+            i++;
+            return String.format("R%08d", i);
+        } else {
+            return "R00000001";
+        }
     }
 }

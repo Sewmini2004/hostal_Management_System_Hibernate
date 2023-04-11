@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="839.0" prefWidth="1264.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hibernate.hostel.controller.DashBoardController">
+<AnchorPane fx:id="pane2" prefHeight="839.0" prefWidth="1264.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hibernate.hostel.controller.DashBoardController">
    <children>
       <AnchorPane prefHeight="840.0" prefWidth="264.0">
          <children>
@@ -16,15 +16,15 @@
                   <Image url="@../assests/2188.jpg" />
                </image>
             </ImageView>
-            <JFXButton layoutX="8.0" layoutY="367.0" prefHeight="67.0" prefWidth="251.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="                 Room Management">
+            <JFXButton layoutX="8.0" layoutY="367.0" onAction="#roomManagementbtnOnAction" prefHeight="67.0" prefWidth="251.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="                 Room Management">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font></JFXButton>
-            <JFXButton layoutX="7.0" layoutY="493.0" prefHeight="67.0" prefWidth="251.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="              Room Reservation ">
+            <JFXButton layoutX="7.0" layoutY="493.0" onAction="#roomResetvationbtnOnAction" prefHeight="67.0" prefWidth="251.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="              Room Reservation ">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font></JFXButton>
-            <JFXButton layoutX="4.0" layoutY="234.0" prefHeight="67.0" prefWidth="251.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="              Student Management">
+            <JFXButton layoutX="4.0" layoutY="234.0" onAction="#StudentManagementOnAction" prefHeight="67.0" prefWidth="251.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="              Student Management">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font></JFXButton>
@@ -51,13 +51,13 @@
                <image>
                   <Image url="@../assests/img_1.png" />
                </image></ImageView>
-            <JFXButton layoutX="55.0" layoutY="680.0" prefHeight="46.0" prefWidth="162.0" style="-fx-background-color: D83A56; -fx-background-radius: 20;" text="Exit" textFill="WHITE">
+            <JFXButton fx:id="btnExitOnAction" layoutX="55.0" layoutY="680.0" prefHeight="46.0" prefWidth="162.0" style="-fx-background-color: D83A56; -fx-background-radius: 20;" text="Exit" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </JFXButton>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="264.0" prefHeight="840.0" prefWidth="1023.0" style="-fx-background-color: A31ACB;" />
+      <AnchorPane fx:id="dashboardContext" layoutX="264.0" prefHeight="840.0" prefWidth="1090.0" style="-fx-background-color: A31ACB;" />
    </children>
 </AnchorPane>

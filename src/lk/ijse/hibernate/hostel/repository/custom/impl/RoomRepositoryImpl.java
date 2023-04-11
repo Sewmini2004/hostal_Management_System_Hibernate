@@ -11,28 +11,28 @@ import java.util.List;
 
 public class RoomRepositoryImpl implements RoomRepository {
     @Override
-    public List<Room> getAll(Session session) throws SQLException, ClassNotFoundException {
+    public List<Room> getAll(Session session) throws Exception {
         return session.createQuery("from Room").getResultList();
     }
 
     @Override
-    public String add(Room obj, Session session) throws SQLException, ClassNotFoundException {
+    public String add(Room obj, Session session) throws Exception {
         String save = (String) session.save(obj);
         return save;
     }
 
     @Override
-    public void delete(String id, Session session) throws SQLException, ClassNotFoundException {
+    public void delete(String id, Session session) throws Exception {
         session.delete(id);
     }
 
     @Override
-    public void update(Room obj, Session session) throws SQLException, ClassNotFoundException {
+    public void update(Room obj, Session session) throws Exception {
         session.update(obj);
     }
 
     @Override
-    public Room search(String id, Session session) throws SQLException, ClassNotFoundException {
+    public Room search(String id, Session session) throws Exception {
         try {
             return session.get(Room.class, id);
         } catch (Exception e) {

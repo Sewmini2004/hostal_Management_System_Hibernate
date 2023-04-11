@@ -24,23 +24,23 @@ public class ReservationRepositoryImpl implements ReservationRepository {
     }
 
     @Override
-    public String add(Reservation obj, Session session) throws SQLException, ClassNotFoundException {
+    public String add(Reservation obj, Session session) throws Exception {
         String save = (String) session.save(obj);
         return save;
     }
 
     @Override
-    public void delete(String id, Session session) throws SQLException, ClassNotFoundException {
+    public void delete(String id, Session session) throws Exception {
         session.delete(id);
     }
 
     @Override
-    public void update(Reservation obj, Session session) throws SQLException, ClassNotFoundException {
+    public void update(Reservation obj, Session session) throws Exception {
         session.update(obj);
     }
 
     @Override
-    public Reservation search(String id, Session session) throws SQLException, ClassNotFoundException {
+    public Reservation search(String id, Session session) throws Exception {
         try {
             return session.get(Reservation.class, id);
         } catch (Exception e) {

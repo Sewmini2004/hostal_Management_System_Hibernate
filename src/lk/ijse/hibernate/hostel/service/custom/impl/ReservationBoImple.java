@@ -81,6 +81,15 @@ public class ReservationBoImple implements ResevationBo {
 
     @Override
     public String generateNextId() throws Exception {
-        return null;
+        List<ReservationDTO> all = getAll();
+        if (all.size() > 0) {
+            String resId = all.get(all.size() - 1).getResId();
+            String[] split = resId.split("[R]");
+            int i = Integer.parseInt(split[1]);
+            i++;
+            return String.format("R%08d", i);
+        } else {
+            return "R00000001";
+        }
     }
 }

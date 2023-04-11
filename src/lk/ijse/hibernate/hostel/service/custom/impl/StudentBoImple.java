@@ -81,6 +81,15 @@ public class StudentBoImple implements StudentBo {
 
     @Override
     public String generateNextId() throws Exception {
-        return null;
+        List<StudentDTO> all = getAll();
+        if (all.size() > 0) {
+            String studentId = all.get(all.size() - 1).getStudentId();
+            String[] split = studentId.split("[S]");
+            int i = Integer.parseInt(split[1]);
+            i++;
+            return String.format("S%08d", i);
+        } else {
+            return "S00000001";
+        }
     }
 }

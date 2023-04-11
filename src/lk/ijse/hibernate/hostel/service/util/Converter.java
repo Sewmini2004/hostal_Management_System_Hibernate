@@ -12,8 +12,10 @@ import java.util.Date;
 import java.util.List;
 
 public class Converter {
+
  /* From --- entity > DTO */
  /* To ---  DTO > entity */
+
  public static StudentDTO fromStudent(Student student){
   return new StudentDTO(
           student.getStudentId(),

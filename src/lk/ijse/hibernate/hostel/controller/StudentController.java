@@ -1,15 +1,33 @@
 package lk.ijse.hibernate.hostel.controller;
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import lk.ijse.hibernate.hostel.service.custom.StudentBo;
 import lk.ijse.hibernate.hostel.service.custom.impl.StudentBoImple;
 
 import java.awt.*;
 
 public class StudentController {
+    public TextField txtName;
+    public TextField txtAddress;
+    public TextField txtContactNo;
+    public DatePicker date;
+    public Label lbsId;
+    public RadioButton rbtnMale;
+    public ToggleGroup Gender;
+    public RadioButton rbtnFemale;
+    public JFXTextField txtAccountNo;
+    public TableView tblStudent;
+    public TableColumn colStuId;
+    public TableColumn colName;
+    public TableColumn colAddress;
+    public TableColumn colContact;
+    public TableColumn colGender;
+    public TableColumn colBdy;
     StudentBo studentBo =new StudentBoImple();
     @FXML
     public Label stdId;
@@ -28,5 +46,23 @@ public class StudentController {
             new Alert(Alert.AlertType.ERROR,"Student removal failed!").show();
 
         }
+    }
+
+    public void dateOnAction(ActionEvent event) {
+    }
+
+    public void btnUpdateOnAction(ActionEvent event) {
+    }
+
+    public void btnClearOnAction(ActionEvent event) {
+    }
+
+    public void btnAddOnAction(ActionEvent event) {
+    }
+
+    public void btnSearchOnAction(ActionEvent event) {
+    }
+
+    public void AccoutntNoOnAction(ActionEvent event) {
     }
 }
