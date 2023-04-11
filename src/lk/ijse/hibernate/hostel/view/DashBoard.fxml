@@ -51,7 +51,7 @@
                <image>
                   <Image url="@../assests/img_1.png" />
                </image></ImageView>
-            <JFXButton fx:id="btnExitOnAction" layoutX="55.0" layoutY="680.0" prefHeight="46.0" prefWidth="162.0" style="-fx-background-color: D83A56; -fx-background-radius: 20;" text="Exit" textFill="WHITE">
+            <JFXButton layoutX="55.0" layoutY="680.0" onAction="#btnExitOnAction" prefHeight="46.0" prefWidth="162.0" style="-fx-background-color: D83A56; -fx-background-radius: 20;" text="Exit" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>

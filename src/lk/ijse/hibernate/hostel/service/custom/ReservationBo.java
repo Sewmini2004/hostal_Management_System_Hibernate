@@ -7,7 +7,7 @@ import lk.ijse.hibernate.hostel.service.util.SuperBo;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ResevationBo extends SuperBo {
+public interface ReservationBo extends SuperBo {
     public List<ReservationDTO> getAll() throws Exception;
     public boolean add(ReservationDTO reservationDTO) throws Exception;
     public boolean delete(String id) throws Exception;

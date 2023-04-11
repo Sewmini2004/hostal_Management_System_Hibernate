@@ -1,9 +1,11 @@
 package lk.ijse.hibernate.hostel.entity;
 
+import lk.ijse.hibernate.hostel.embaded.ReservationTimePeriod;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,10 +16,17 @@ import java.util.Date;
 public class Reservation implements SuperEntity {
     @Id
     private String resId;
-    private Date date;
     private String status;
     private double keyMoney;
-    private Double payingAmount;
+    private double payingAmount;
+    private double amountBalance;
+    @ElementCollection
+    @CollectionTable(
+            name = "reservation_period",
+            joinColumns = @JoinColumn(name = "res_Id")
+    )
+    private List<ReservationTimePeriod> reservationTimePeriods;
+
     @ManyToOne()
     @JoinColumn(referencedColumnName = "studentId")
     private Student student;

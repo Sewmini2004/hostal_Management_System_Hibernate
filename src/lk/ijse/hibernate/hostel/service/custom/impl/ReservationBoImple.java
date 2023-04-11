@@ -1,13 +1,10 @@
 package lk.ijse.hibernate.hostel.service.custom.impl;
 
 import lk.ijse.hibernate.hostel.dto.ReservationDTO;
-import lk.ijse.hibernate.hostel.dto.StudentDTO;
 import lk.ijse.hibernate.hostel.entity.Reservation;
-import lk.ijse.hibernate.hostel.entity.Student;
 import lk.ijse.hibernate.hostel.repository.RepoFactory;
 import lk.ijse.hibernate.hostel.repository.custom.ReservationRepository;
-import lk.ijse.hibernate.hostel.repository.custom.StudentRepository;
-import lk.ijse.hibernate.hostel.service.custom.ResevationBo;
+import lk.ijse.hibernate.hostel.service.custom.ReservationBo;
 import lk.ijse.hibernate.hostel.service.util.Converter;
 import lk.ijse.hibernate.hostel.util.FactoryConfiguration;
 import org.hibernate.Session;
@@ -16,7 +13,7 @@ import org.hibernate.Transaction;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReservationBoImple implements ResevationBo {
+public class ReservationBoImple implements ReservationBo {
     private final ReservationRepository reservationRepository = RepoFactory.getInstance().getRepo(RepoFactory.Repo.RESEVATION);
     Session session = FactoryConfiguration.getInstance().getSession();
 

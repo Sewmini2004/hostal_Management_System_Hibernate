@@ -16,11 +16,10 @@ import java.util.List;
 
 public class StudentBoImple implements StudentBo {
     private final StudentRepository studentRepository = RepoFactory.getInstance().getRepo(RepoFactory.Repo.STUDENT);
-    Session session = FactoryConfiguration.getInstance().getSession();
-
 
     @Override
     public List<StudentDTO> getAll() throws Exception {
+        Session session = FactoryConfiguration.getInstance().getSession();
         List<Student> all = studentRepository.getAll(session);
         ArrayList<StudentDTO> list = new ArrayList<>();
         for (Student student: all) {
@@ -31,7 +30,7 @@ public class StudentBoImple implements StudentBo {
 
     @Override
     public boolean add(StudentDTO studentDTO) throws Exception {
-
+        Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         String add = studentRepository.add(Converter.toStudent(studentDTO), session);
         transaction.commit();
@@ -42,6 +41,7 @@ public class StudentBoImple implements StudentBo {
 
     @Override
     public boolean delete(String id) throws Exception {
+        Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         studentRepository.delete(id, session);
         transaction.commit();
@@ -52,7 +52,7 @@ public class StudentBoImple implements StudentBo {
 
     @Override
     public boolean update(StudentDTO studentDTO) throws Exception {
-
+        Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         studentRepository.update(Converter.toStudent(studentDTO), session);
         transaction.commit();
@@ -62,6 +62,7 @@ public class StudentBoImple implements StudentBo {
 
     @Override
     public StudentDTO search(String id) throws Exception {
+        Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         StudentDTO studentDTO = Converter.fromStudent(studentRepository.search(id, session));
         transaction.commit();
@@ -72,6 +73,7 @@ public class StudentBoImple implements StudentBo {
 
     @Override
     public boolean isExists(String id) throws Exception {
+        Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         studentRepository.search(id, session);
         transaction.commit();

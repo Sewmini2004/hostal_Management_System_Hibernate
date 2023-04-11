@@ -16,14 +16,18 @@ public class DashBoardController {
     public AnchorPane pane2;
 
     public void roomManagementbtnOnAction(ActionEvent event) throws IOException {
-        Navigation.navigate(Route.RESERVATION,dashboardContext);
+        Navigation.navigate(Route.ROOM,dashboardContext);
     }
 
     public void roomResetvationbtnOnAction(ActionEvent event) throws IOException {
-        Navigation.navigate(Route.ROOM,dashboardContext);
+        Navigation.navigate(Route.RESERVATION,dashboardContext);
     }
 
     public void StudentManagementOnAction(ActionEvent event) throws IOException {
         Navigation.navigate(Route.STUDENT,dashboardContext);
+    }
+
+    public void btnExitOnAction(ActionEvent event) {
+
     }
 }
