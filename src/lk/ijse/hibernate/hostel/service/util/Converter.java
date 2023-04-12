@@ -62,24 +62,28 @@ public class Converter {
  public static ReservationDTO fromReservation(Reservation reservation) {
   return new ReservationDTO(
           reservation.getResId(),
-          reservation.getDate(),
           reservation.getStatus(),
           reservation.getKeyMoney(),
           reservation.getPayingAmount(),
-          reservation.getStudent(),
-          reservation.getRoom()
+          reservation.getAmountBalance(),
+          fromStudent(reservation.getStudent()),
+          fromRoom(reservation.getRoom()),
+          reservation.getDateFrom(),
+          reservation.getDateTo()
   );
  }
-
+ //oya hdnn eka taya eka manika
  public static Reservation toReservation(ReservationDTO reservationDTO) {
   return new Reservation(
           reservationDTO.getResId(),
-          reservationDTO.getDate(),
           reservationDTO.getStatus(),
           reservationDTO.getKeyMoney(),
           reservationDTO.getPayingAmount(),
-          reservationDTO.getStudent(),
-          reservationDTO.getRoom()
+          reservationDTO.getAmountBalance(),
+          toStudent(reservationDTO.getStudent()),
+          toRoom(reservationDTO.getRoom()),
+          reservationDTO.getDateFrom(),
+          reservationDTO.getDateTo()
   );
 
  }

@@ -12,6 +12,7 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
+//ko methn ar object ek hdla thynne kohed manika mt pennanko
 public class Student implements SuperEntity{
     @Id
     private String studentId;

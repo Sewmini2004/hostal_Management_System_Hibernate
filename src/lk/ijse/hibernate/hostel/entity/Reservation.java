@@ -1,11 +1,12 @@
 package lk.ijse.hibernate.hostel.entity;
 
-import lk.ijse.hibernate.hostel.embaded.ReservationTimePeriod;
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.Date;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,19 +21,13 @@ public class Reservation implements SuperEntity {
     private double keyMoney;
     private double payingAmount;
     private double amountBalance;
-    @ElementCollection
-    @CollectionTable(
-            name = "reservation_period",
-            joinColumns = @JoinColumn(name = "res_Id")
-    )
-    private List<ReservationTimePeriod> reservationTimePeriods;
-
     @ManyToOne()
     @JoinColumn(referencedColumnName = "studentId")
     private Student student;
     @ManyToOne()
     @JoinColumn(referencedColumnName = "roomTypeId")
     private Room room;
-
+    private Date dateTo;
+    private Date dateFrom;
 
 }
