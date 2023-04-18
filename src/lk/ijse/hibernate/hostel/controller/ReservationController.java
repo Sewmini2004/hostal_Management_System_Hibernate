@@ -193,6 +193,5 @@ public class ReservationController {
     }
 
     public void cmbStatusOnAction(ActionEvent event) {
-
     }
 }
