@@ -2,11 +2,14 @@ package lk.ijse.hibernate.hostel.controller;
 
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.hibernate.hostel.dto.StudentDTO;
 import lk.ijse.hibernate.hostel.entity.Reservation;
+import lk.ijse.hibernate.hostel.entity.Student;
 import lk.ijse.hibernate.hostel.service.custom.StudentBo;
 import lk.ijse.hibernate.hostel.service.util.ServiceFactory;
 
@@ -14,7 +17,9 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class StudentController {
     public TextField txtName;
@@ -26,13 +31,13 @@ public class StudentController {
     public ToggleGroup Gender;
     public RadioButton rbtnFemale;
     public JFXTextField txtAccountNo;
-    public TableView tblStudent;
-    public TableColumn colStuId;
-    public TableColumn colName;
-    public TableColumn colAddress;
-    public TableColumn colContact;
-    public TableColumn colGender;
-    public TableColumn colBdy;
+    public TableView<Student> tblStudent;
+    public TableColumn<?, ?> colStuId;
+    public TableColumn<?, ?> colName;
+    public TableColumn<?, ?> colAddress;
+    public TableColumn<?, ?> colContact;
+    public TableColumn<?, ?> colGender;
+    public TableColumn<?, ?> colBdy;
     private final StudentBo studentBo = ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.STUDENT);
 
     @FXML
@@ -41,6 +46,25 @@ public class StudentController {
     public void initialize() {
         try {
             loadStudentId();
+            tblStudent.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("studentId"));
+            tblStudent.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
+            tblStudent.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("address"));
+            tblStudent.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("contactNo"));
+            tblStudent.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("gender"));
+            tblStudent.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("dob"));
+
+            List<Student> studentList = studentBo.getAll().stream().map(student -> new Student(
+                    student.getStudentId(),
+                    student.getName(),
+                    student.getAddress(),
+                    student.getContactNo(),
+                    student.getDob(),
+                    student.getGender()
+
+            )).collect(Collectors.toList());
+            tblStudent.setItems(FXCollections.observableArrayList(studentList));
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

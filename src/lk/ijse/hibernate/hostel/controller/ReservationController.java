@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.StringConverter;
 import lk.ijse.hibernate.hostel.dto.ReservationDTO;
 import lk.ijse.hibernate.hostel.dto.RoomDTO;
@@ -13,11 +14,14 @@ import lk.ijse.hibernate.hostel.service.custom.ReservationBo;
 import lk.ijse.hibernate.hostel.service.custom.RoomBo;
 import lk.ijse.hibernate.hostel.service.custom.StudentBo;
 import lk.ijse.hibernate.hostel.service.util.ServiceFactory;
+import lk.ijse.hibernate.hostel.view.tm.ReservationTM;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class ReservationController {
 
@@ -31,25 +35,26 @@ public class ReservationController {
     public Label lblStatus;
     public Label lblKeyMoney;
     public JFXTextField txtPayingAmount;
-    public TableView tblReservation;
-    public TableColumn colResId;
-    public TableColumn colStudentId;
-    public TableColumn colRoomId;
-    public TableColumn colStuName;
-    public TableColumn colType;
-    public TableColumn colKeyMoney;
-    public TableColumn colPayAmount;
+    public TableView<ReservationTM> tblReservation;
+    public TableColumn<?, ?> colResId;
+    public TableColumn<?, ?> colStudentId;
+    public TableColumn<?, ?> colRoomId;
+    public TableColumn<?, ?> colStuName;
+    public TableColumn<?, ?> colType;
+    public TableColumn<?, ?> colKeyMoney;
+    public TableColumn<?, ?> colPayAmount;
     public Label lblDate;
     public DatePicker dateFrom;
     public DatePicker dateTo;
     public Label lblBalance;
 
 
-    private final ReservationBo reservationBo = ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.RESEVATION);
+    private ReservationBo reservationBo = ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.RESEVATION);
     public ComboBox cmbStatus;
     public Label lblQty;
     private StudentBo studentBo = ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.STUDENT);
     private RoomBo roomBo = ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.ROOM);
+
     ObservableList<String> observableList = FXCollections.observableArrayList("Yes", "No");
 
 
@@ -61,6 +66,26 @@ public class ReservationController {
             loadReservationId();
             cmbStatus.setItems(observableList);
 
+            //SetCellValue Factory
+            colResId.setCellValueFactory(new PropertyValueFactory<>("ResId"));
+            colStudentId.setCellValueFactory(new PropertyValueFactory<>("studentId"));
+            colRoomId.setCellValueFactory(new PropertyValueFactory<>("roomTypeId"));
+            colStuName.setCellValueFactory(new PropertyValueFactory<>("name"));
+            colType.setCellValueFactory(new PropertyValueFactory<>("type"));
+            colKeyMoney.setCellValueFactory(new PropertyValueFactory<>("keyMoney"));
+            colPayAmount.setCellValueFactory(new PropertyValueFactory<>("payingAmount"));
+
+
+            List<ReservationTM> reservationTMS=reservationBo.getAll().stream().map(r -> new ReservationTM(
+                    r.getResId(),
+                    r.getKeyMoney(),
+                    r.getPayingAmount(),
+                    r.getStudent().getStudentId(),
+                    r.getStudent().getName(),
+                    r.getRoom().getRoomTypeId(),
+                    r.getStatus()
+            )).collect(Collectors.toList());
+            tblReservation.setItems(FXCollections.observableArrayList(reservationTMS));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -167,6 +192,7 @@ public class ReservationController {
     }
 
     public void btnSearchOnAction(ActionEvent event) {
+
     }
 
     public void cmbRoomIdOnAction(ActionEvent event) {

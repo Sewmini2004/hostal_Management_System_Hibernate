@@ -49,7 +49,6 @@ public class RoomBoImple implements RoomBo {
         transaction.commit();
         session.close();
         return true;
-
     }
 
     @Override

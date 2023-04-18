@@ -127,12 +127,12 @@
         </Label>
         <DatePicker fx:id="dateFrom" layoutX="501.0" layoutY="357.0" prefHeight="42.0" prefWidth="208.0" promptText="  From :" style="-fx-background-color: black;" />
         <DatePicker fx:id="dateTo" layoutX="204.0" layoutY="357.0" prefHeight="42.0" prefWidth="208.0" promptText="  To :" style="-fx-background-color: black;" />
-        <Label layoutX="430.0" layoutY="358.0" prefHeight="42.0" prefWidth="37.0" style="-fx-background-color: white; -fx-border-color: black;" text=" To">
+        <Label layoutX="723.0" layoutY="357.0" prefHeight="42.0" prefWidth="37.0" style="-fx-background-color: white; -fx-border-color: black;" text=" To">
             <font>
                 <Font size="18.0" />
             </font>
         </Label>
-        <Label layoutX="718.0" layoutY="358.0" prefHeight="42.0" prefWidth="47.0" style="-fx-background-color: white; -fx-border-color: black;" text="From">
+        <Label layoutX="425.0" layoutY="357.0" prefHeight="42.0" prefWidth="47.0" style="-fx-background-color: white; -fx-border-color: black;" text="From">
             <font>
                 <Font size="18.0" />
             </font>

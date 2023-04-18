@@ -12,7 +12,6 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-//ko methn ar object ek hdla thynne kohed manika mt pennanko
 public class Student implements SuperEntity{
     @Id
     private String studentId;
@@ -24,6 +23,15 @@ public class Student implements SuperEntity{
     private String gender;
     @OneToMany(mappedBy = "student",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Reservation> reservations;
+
+    public Student(String studentId, String name, String address, String contactNo, Date dob, String gender) {
+        this.studentId=studentId;
+        this.name=name;
+        this.address=address;
+        this.contactNo=contactNo;
+        this.dob=dob;
+        this.gender=gender;
+    }
 
 
 }

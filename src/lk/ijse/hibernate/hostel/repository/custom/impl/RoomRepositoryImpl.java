@@ -23,7 +23,15 @@ public class RoomRepositoryImpl implements RoomRepository {
 
     @Override
     public void delete(String id, Session session) throws Exception {
-        session.delete(id);
+        /*
+        //mem nthuw krnonam manika api mthent delete krnn ona table ekta e objct ekk hdlne ywnn ona em krnonam
+        Room room = new Room();//mem object ekk hdnne hibernate wlt mon table ekt kyla thorgnna
+        room.setRoomTypeId(id);//ekt id ek dnne manikamon row ekkd dlt krnnona kyla blgnn hrida ek thrunda blnna pana ow
+        session.delete(room);
+*/
+        Room load = session.load(Room.class, id);
+        //mek thrunda?ow
+        session.delete(load);
     }
 
     @Override

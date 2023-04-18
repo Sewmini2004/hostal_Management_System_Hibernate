@@ -25,7 +25,8 @@ public class StudentRepositoryImpl implements StudentRepository {
 
     @Override
     public void delete(String id, Session session) throws Exception {
-        session.delete(id);
+        Student load = session.load(Student.class, id);
+        session.delete(load);
     }
 
     @Override

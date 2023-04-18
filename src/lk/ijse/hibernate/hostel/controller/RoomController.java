@@ -5,8 +5,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.hibernate.hostel.dto.RoomDTO;
 import lk.ijse.hibernate.hostel.entity.Reservation;
+import lk.ijse.hibernate.hostel.entity.Room;
 import lk.ijse.hibernate.hostel.service.custom.RoomBo;
 import lk.ijse.hibernate.hostel.service.custom.StudentBo;
 import lk.ijse.hibernate.hostel.service.custom.impl.StudentBoImple;
@@ -18,6 +20,7 @@ import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class RoomController {
 
@@ -27,11 +30,11 @@ public class RoomController {
 
     public Label lblRoomId;
 
-    public TableView tblRoom;
-    public TableColumn colRoomId;
-    public TableColumn coltype;
-    public TableColumn cilKeyMoney;
-    public TableColumn colqty;
+    public TableView<Room> tblRoom;
+    public TableColumn<?, ?> colRoomId;
+    public TableColumn<?, ?> coltype;
+    public TableColumn<?, ?> cilKeyMoney;
+    public TableColumn<?, ?> colqty;
     public JFXTextField txtRoomId;
     public ComboBox<String> cmbType;
 
@@ -42,6 +45,17 @@ public class RoomController {
         try {
             loadRoomId();
             cmbType.setItems(observableList);
+            tblRoom.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("roomTypeId"));
+            tblRoom.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("type"));
+            tblRoom.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("keyMoney"));
+            tblRoom.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("qty"));
+            List<Room> roomList = roomBo.getAll().stream().map(room -> new Room(
+                    room.getRoomTypeId(),
+                    room.getType(),
+                    room.getKeyMoney(),
+                    room.getQty()
+            )).collect(Collectors.toList());
+            tblRoom.setItems(FXCollections.observableArrayList(roomList));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,7 +91,6 @@ public class RoomController {
         }//mem wdak krnn pluwm onnam manika anthmit mokk unth wenn on deyk thyenonam finally ek athult dnn pluwm meke em ekk nneda ne clear wen wge dewl ekt tinne btn ekk buttn ekk thbunta api ekkknek add krl iwrunma okkom clear wenn dnn e button ek athn cl krnn manika
 
 
-
     }
 
 
@@ -92,6 +105,7 @@ public class RoomController {
                 initialize();
             }
         } catch (Exception e) {
+            e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Room removal failed!").show();
 
         }
@@ -149,7 +163,7 @@ public class RoomController {
                 cmbType.getSelectionModel().select(getRoom.getType());
                 txtKeyMoney.setText(String.valueOf(getRoom.getKeyMoney()));
                 txtQty.setText(String.valueOf(getRoom.getQty()));
-            }else {
+            } else {
                 new Alert(Alert.AlertType.WARNING, "Room is not found !!");
 
             }
