@@ -141,6 +141,7 @@ public class ReservationController {
             if (buttonType.orElse(cancel) == ok) {
                 boolean isAdded = reservationBo.add(new ReservationDTO(resId, status, keyMoney, payingAmount, amountBalance, student, room, from, to));
                 new Alert(Alert.AlertType.CONFIRMATION, "Added Success !").show();
+
                 initialize();
                 btnClearOnAction(event);
             } else {
