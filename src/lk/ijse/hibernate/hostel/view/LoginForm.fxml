@@ -36,7 +36,7 @@
             <Font name="Segoe UI Semilight" size="20.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="txt_password" layoutX="96.0" layoutY="407.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="44.0" prefWidth="319.0" promptText="Password" style="-fx-background-color: DFDFDE; -fx-text-fill: black; -fx-prompt-text-fill: black;">
+      <PasswordField fx:id="txt_password" layoutX="96.0" layoutY="408.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="51.0" prefWidth="319.0" promptText="Password" style="-fx-background-color: DFDFDE; -fx-text-fill: black; -fx-prompt-text-fill: black;">
          <font>
             <Font name="Segoe UI Semilight" size="20.0" />
          </font>
@@ -69,15 +69,20 @@
             <Image url="@../assests/images (3).png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="99.0" fitWidth="101.0" layoutX="168.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="99.0" fitWidth="101.0" layoutX="164.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assests/lock.png" />
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="92.0" layoutX="14.0" layoutY="20.0" opacity="0.16" stroke="BLACK" strokeType="INSIDE" width="399.0" />
-      <Label fx:id="Logins" layoutX="24.0" layoutY="254.0" prefHeight="12.0" prefWidth="387.0" textFill="#e80c0c">
+      <Label fx:id="Logins" layoutX="23.0" layoutY="239.0" prefHeight="44.0" prefWidth="381.0" textFill="#e80c0c">
          <font>
             <Font size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="txtPassword" layoutX="334.0" layoutY="415.0" prefHeight="37.0" prefWidth="85.0">
+         <font>
+            <Font name="System Bold" size="19.0" />
          </font>
       </Label>
    </children>
