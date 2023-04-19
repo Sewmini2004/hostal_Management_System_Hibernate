@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.transaction.Transactional;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -14,6 +15,7 @@ import java.util.Date;
 @Getter
 @ToString
 @Entity
+@Transactional
 public class Reservation implements SuperEntity {
     @Id
     private String resId;
@@ -22,10 +24,10 @@ public class Reservation implements SuperEntity {
     private double payingAmount;
     private double amountBalance;
     @ManyToOne()
-    @JoinColumn(referencedColumnName = "studentId")
+//    @JoinColumn(referencedColumnName = "studentId")
     private Student student;
     @ManyToOne()
-    @JoinColumn(referencedColumnName = "roomTypeId")
+//    @JoinColumn(referencedColumnName = "roomTypeId")
     private Room room;
     private Date dateTo;
     private Date dateFrom;

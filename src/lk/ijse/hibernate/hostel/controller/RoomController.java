@@ -77,7 +77,7 @@ public class RoomController {
 
         boolean isAmountMatched = Pattern.compile("^[0-9]+(\\.[0-9][0-9])?$").matcher(txtKeyMoney.getText()).matches();
         boolean isQtyMatched = Pattern.compile("^(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))$").matcher(txtQty.getText()).matches();
-//wtenone wetenw arw weda nee mwerdiyt gehuwm penn epi
+
         if (isAmountMatched) {
             if (isQtyMatched) {
                 try {

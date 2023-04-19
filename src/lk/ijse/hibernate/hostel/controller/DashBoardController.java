@@ -31,7 +31,8 @@ public class DashBoardController {
 
     }
 
-    public void btnUserMngOnAction(ActionEvent event) {
+    public void btnUserMngOnAction(ActionEvent event) throws IOException {
+        Navigation.navigate(Route.USER,dashboardContext);
 
     }
 }

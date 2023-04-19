@@ -25,6 +25,7 @@ public class StudentBoImple implements StudentBo {
         for (Student student: all) {
             list.add(Converter.fromStudent(student));
            }
+        session.close();
         return list;
     }
 

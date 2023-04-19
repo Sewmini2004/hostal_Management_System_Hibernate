@@ -2,6 +2,7 @@ package lk.ijse.hibernate.hostel.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import javax.xml.crypto.Data;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
+@Transactional
 public class Student implements SuperEntity{
     @Id
     private String studentId;
@@ -21,7 +23,7 @@ public class Student implements SuperEntity{
     private String contactNo;
     private Date dob;
     private String gender;
-    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Reservation> reservations;
 
     public Student(String studentId, String name, String address, String contactNo, Date dob, String gender) {

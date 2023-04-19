@@ -14,6 +14,7 @@ import lk.ijse.hibernate.hostel.dto.StudentDTO;
 import lk.ijse.hibernate.hostel.service.custom.ReservationBo;
 import lk.ijse.hibernate.hostel.service.custom.RoomBo;
 import lk.ijse.hibernate.hostel.service.custom.StudentBo;
+import lk.ijse.hibernate.hostel.service.util.Converter;
 import lk.ijse.hibernate.hostel.service.util.ServiceFactory;
 import lk.ijse.hibernate.hostel.view.tm.ReservationTM;
 
@@ -162,29 +163,44 @@ public class ReservationController {
 
         try {
             StudentDTO student = cmbStdId.getSelectionModel().getSelectedItem();
+            //student gtta
             RoomDTO room = cmbRoomId.getSelectionModel().getSelectedItem();
-
+            //room ek gtta manika
+            room.setQty(room.getQty()-1);
+            //me room eke qty eken ekk adu kra
             ButtonType ok = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
             ButtonType cancel = new ButtonType("Cancel ", ButtonBar.ButtonData.CANCEL_CLOSE);
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure ? !", ok, cancel);
             Optional<ButtonType> buttonType = alert.showAndWait();
             if (buttonType.orElse(cancel) == ok) {
-                boolean isAdded = reservationBo.add(new ReservationDTO(resId, status, keyMoney, payingAmount, amountBalance, student, room, from, to));
-                new Alert(Alert.AlertType.CONFIRMATION, "Added Success !").show();
 
-                initialize();
-                btnClearOnAction(event);
+                //reservcation ek hduwaw ekta adala student wai room ekai thmai ar uddi gtte e dekth dlane mek hdnne wenne ek em dla mek hduwa reservation eka
+                ReservationDTO reservationDTO = new ReservationDTO(resId, status, keyMoney, payingAmount, amountBalance, student, room, from, to);
+
+                //ek parent knk thorgtta manika api dn mthendi room parent wa thorgnne eyge wensak wen nisa
+                //smhrwelwta parent 2k htyta dekema wensk wenonam dekma update krnn weno em wenne nthnm thmnt kmthi ekk thorgnn pluwm
+                //mek thrunda blnna manikata hrii
+                //itpsse manika api e parent ta adala reservation lsit ekt add krno ape reservation eka
+                room.getReservations().add(Converter.toReservation(reservationDTO));
+                //itpsse api parentwa update krno ethkota e parentge athule reservation LIST ekta api dpu ar reservation eka
+                //ekta adala wen Reservation table ekta ghm save weno mek thrunda manikata hrii
+                boolean isAdded = roomBo.update(room);
+                //mgeth std dmmta update wel ne mn mulin room ekn dla tmai psse wens krl thynne manika dn blddi wda ne epr room dmmama wda
+                //innwda oo mkedi
+                new Alert(Alert.AlertType.CONFIRMATION, "Added Success !").show();
+//                initialize();
+//                btnClearOnAction(event);
             } else {
                 new Alert(Alert.AlertType.CONFIRMATION, "Cancelled !").show();
             }
         } catch (Exception e) {
+            e.printStackTrace();
             new Alert(Alert.AlertType.CONFIRMATION, "Added Failed !").show();
         }
         }else {
             txtPayingAmount.setFocusColor(Paint.valueOf("Red"));
             txtPayingAmount.requestFocus();
         }
-        //ko manika eka
 
     }
 

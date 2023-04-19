@@ -31,7 +31,7 @@ public class StudentRepositoryImpl implements StudentRepository {
 
     @Override
     public void update(Student obj, Session session) throws Exception {
-        session.update(obj);
+        session.saveOrUpdate(obj);
     }
 
     @Override

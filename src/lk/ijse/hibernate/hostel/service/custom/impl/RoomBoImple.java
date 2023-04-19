@@ -28,6 +28,7 @@ public class RoomBoImple implements RoomBo {
         for (Room room: all) {
             list.add(Converter.fromRoom(room));
         }
+        session.close();
         return list;
     }
 
