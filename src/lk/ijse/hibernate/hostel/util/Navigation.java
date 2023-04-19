@@ -14,19 +14,22 @@ public class Navigation {
         Navigation.pane = pane;
         Navigation.pane.getChildren().clear();
         Stage window = (Stage) Navigation.pane.getScene().getWindow();
+        window.setResizable(false);
 
         switch (route) {
+            case USER:
+                window.setTitle("User Form");
+                initUI("User.fxml");
+                break;
 
             case LOGIN:
                 window.setTitle("LOGIN Form");
-                window.setResizable(false);
                 initUI("LoginForm.fxml");
                 break;
 
 
             case DASHBOARD:
                 window.setTitle("Dashboard");
-                window.setResizable(false);
                 initUI("DashBoard.fxml");
                 break;
 
@@ -34,20 +37,17 @@ public class Navigation {
 
             case STUDENT:
                 window.setTitle("Student Form");
-                window.setResizable(false);
                 initUI("Student.fxml");
                 break;
 
             case ROOM:
                 window.setTitle("Room Form");
-                window.setResizable(false);
                 initUI("Room.fxml");
                 break;
 
 
             case RESERVATION:
                 window.setTitle("Reservation Form");
-                window.setResizable(false);
                 initUI("Reservation.fxml");
                 break;
 

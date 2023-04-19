@@ -71,44 +71,44 @@ public class RoomController {
     public void btnAddOnAction(ActionEvent event) {
         String roomId = lblRoomId.getText();
         String type = (String) cmbType.getValue();
-        double keyMoney = Double.parseDouble(txtKeyMoney.getText());
-        int qty = Integer.parseInt(txtQty.getText());
+        String keyMoney = txtKeyMoney.getText();
+        String qty = txtQty.getText();
         new ArrayList<Reservation>();
 
-        boolean isAmountMatched = Pattern.compile("^(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))$").matcher(txtKeyMoney.getText()).matches();
+        boolean isAmountMatched = Pattern.compile("^[0-9]+(\\.[0-9][0-9])?$").matcher(txtKeyMoney.getText()).matches();
         boolean isQtyMatched = Pattern.compile("^(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))$").matcher(txtQty.getText()).matches();
-
+//wtenone wetenw arw weda nee mwerdiyt gehuwm penn epi
         if (isAmountMatched) {
             if (isQtyMatched) {
-        try {
-            ButtonType ok = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
-            ButtonType cancel = new ButtonType("Cancel ", ButtonBar.ButtonData.CANCEL_CLOSE);
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure ? !", ok, cancel);
-            Optional<ButtonType> buttonType = alert.showAndWait();
-            if (buttonType.orElse(cancel) == ok) {
-                boolean isAdded = roomBo.add(new RoomDTO(roomId, type, keyMoney, qty, new ArrayList<Reservation>()));
-                new Alert(Alert.AlertType.CONFIRMATION, "Added Success !").show();
-                initialize();
-                btnClearOnAction(event);//new ActionEvent denn on ne manika me mthod ekta ena actionEvent ek dunnm hri ah hri hri mem tmai
-            } else {
-                new Alert(Alert.AlertType.CONFIRMATION, "Cancelled !").show();
-            }
-        } catch (Exception e) {
+                try {
+                    ButtonType ok = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+                    ButtonType cancel = new ButtonType("Cancel ", ButtonBar.ButtonData.CANCEL_CLOSE);
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure ? !", ok, cancel);
+                    Optional<ButtonType> buttonType = alert.showAndWait();
+                    if (buttonType.orElse(cancel) == ok) {
+                        boolean isAdded = roomBo.add(new RoomDTO(roomId, type, Double.parseDouble(keyMoney), Integer.parseInt(qty), new ArrayList<Reservation>()));
+                        new Alert(Alert.AlertType.CONFIRMATION, "Added Success !").show();
+                        initialize();
+                        btnClearOnAction(event);//new ActionEvent denn on ne manika me mthod ekta ena actionEvent ek dunnm hri ah hri hri mem tmai
+                    } else {
+                        new Alert(Alert.AlertType.CONFIRMATION, "Cancelled !").show();
+                    }
+                } catch (Exception e) {
 //            exception ekk pninwa kynne manika database ekt komth ynne nee mehtndi thmai api error message ek denna ona thrunda blnna manikata hri
-            new Alert(Alert.AlertType.CONFIRMATION, "Added Failed !").show();
-        }//mem wdak krnn pluwm onnam manika anthmit mokk unth wenn on deyk thyenonam finally ek athult dnn pluwm meke em ekk nneda ne clear wen wge dewl ekt tinne btn ekk buttn ekk thbunta api ekkknek add krl iwrunma okkom clear wenn dnn e button ek athn cl krnn manika
+                    new Alert(Alert.AlertType.CONFIRMATION, "Added Failed !").show();
+                }//mem wdak krnn pluwm onnam manika anthmit mokk unth wenn on deyk thyenonam finally ek athult dnn pluwm meke em ekk nneda ne clear wen wge dewl ekt tinne btn ekk buttn ekk thbunta api ekkknek add krl iwrunma okkom clear wenn dnn e button ek athn cl krnn manika
 
-        }else {
+            } else {
+                txtQty.setFocusColor(Paint.valueOf("Red"));
+                txtQty.requestFocus();
+            }
+
+        } else {
             txtKeyMoney.setFocusColor(Paint.valueOf("Red"));
             txtKeyMoney.requestFocus();
         }
-        }else {
-            txtQty.setFocusColor(Paint.valueOf("Red"));
-            txtQty.requestFocus();
-        }
 
     }
-
 
 
     public void btnDeleteOnAction(ActionEvent event) {
@@ -131,37 +131,37 @@ public class RoomController {
     public void btnUpdateOnAction(ActionEvent event) {
         String roomId = lblRoomId.getText();
         String type = (String) cmbType.getValue();
-        double keyMoney = Double.parseDouble(txtKeyMoney.getText());
-        int qty = Integer.parseInt(txtQty.getText());
+        String keyMoney = txtKeyMoney.getText();
+        String qty = txtQty.getText();
         new ArrayList<Reservation>();
-        boolean isAmountMatched = Pattern.compile("^(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))$").matcher(txtKeyMoney.getText()).matches();
+        boolean isAmountMatched = Pattern.compile("^[0-9]+(\\.[0-9][0-9])?$").matcher(txtKeyMoney.getText()).matches();
         boolean isQtyMatched = Pattern.compile("^(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))$").matcher(txtQty.getText()).matches();
-          if (isAmountMatched) {
+        if (isAmountMatched) {
             if (isQtyMatched) {
-        try {
-            boolean isUpdated = roomBo.update(new RoomDTO(roomId, type, keyMoney, qty, new ArrayList<Reservation>()));
-            if (isUpdated) {
-                ButtonType ok = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
-                ButtonType cancel = new ButtonType("Cancel ", ButtonBar.ButtonData.CANCEL_CLOSE);
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure ? !", ok, cancel);
-                Optional<ButtonType> buttonType = alert.showAndWait();
-                if (buttonType.orElse(cancel) == ok) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Updated Success !").show();
-                    initialize();
-                    btnClearOnAction(new ActionEvent());
-                } else {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Updated Failed !").show();
+                try {
+                    boolean isUpdated = roomBo.update(new RoomDTO(roomId, type, Double.parseDouble(keyMoney), Integer.parseInt(qty), new ArrayList<Reservation>()));
+                    if (isUpdated) {
+                        ButtonType ok = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+                        ButtonType cancel = new ButtonType("Cancel ", ButtonBar.ButtonData.CANCEL_CLOSE);
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure ? !", ok, cancel);
+                        Optional<ButtonType> buttonType = alert.showAndWait();
+                        if (buttonType.orElse(cancel) == ok) {
+                            new Alert(Alert.AlertType.CONFIRMATION, "Updated Success !").show();
+                            initialize();
+                            btnClearOnAction(new ActionEvent());
+                        } else {
+                            new Alert(Alert.AlertType.CONFIRMATION, "Updated Failed !").show();
 
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-            }else {
+            } else {
                 txtKeyMoney.setFocusColor(Paint.valueOf("Red"));
                 txtKeyMoney.requestFocus();
             }
-        }else {
+        } else {
             txtQty.setFocusColor(Paint.valueOf("Red"));
             txtQty.requestFocus();
         }

@@ -56,6 +56,11 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </JFXButton>
+            <JFXButton layoutX="4.0" layoutY="583.0" onAction="#btnUserMngOnAction" prefHeight="67.0" prefWidth="251.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="User Management">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="dashboardContext" layoutX="264.0" prefHeight="840.0" prefWidth="1090.0" style="-fx-background-color: A31ACB;" />

@@ -2,6 +2,7 @@ package lk.ijse.hibernate.hostel.service.util;
 import lk.ijse.hibernate.hostel.service.custom.impl.ReservationBoImple;
 import lk.ijse.hibernate.hostel.service.custom.impl.RoomBoImple;
 import lk.ijse.hibernate.hostel.service.custom.impl.StudentBoImple;
+import lk.ijse.hibernate.hostel.service.custom.impl.UserBoImple;
 
 
 public class ServiceFactory {
@@ -17,11 +18,13 @@ public class ServiceFactory {
 
 
         public enum ServiceType {
-            STUDENT, ROOM, RESEVATION
+            STUDENT, ROOM, RESEVATION, USER
         }
 
         public < T extends SuperBo> T getService(ServiceType serviceType) {
             switch (serviceType) {
+                case USER:
+                    return (T) new UserBoImple();
                 case STUDENT:
                     return (T) new StudentBoImple();
                 case ROOM:

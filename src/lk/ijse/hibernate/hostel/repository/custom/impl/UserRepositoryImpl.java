@@ -1,42 +1,41 @@
 package lk.ijse.hibernate.hostel.repository.custom.impl;
 
 import lk.ijse.hibernate.hostel.entity.Room;
-import lk.ijse.hibernate.hostel.entity.Student;
+import lk.ijse.hibernate.hostel.entity.User;
 import lk.ijse.hibernate.hostel.repository.custom.RoomRepository;
+import lk.ijse.hibernate.hostel.repository.custom.UserRepository;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
-import java.sql.SQLException;
 import java.util.List;
 
-public class RoomRepositoryImpl implements RoomRepository {
+public class UserRepositoryImpl implements UserRepository {
     @Override
-    public List<Room> getAll(Session session) throws Exception {
-        return session.createQuery("from Room").getResultList();
+    public List<User> getAll(Session session) throws Exception {
+        return session.createQuery("from User ").getResultList();
     }
 
     @Override
-    public String add(Room obj, Session session) throws Exception {
-        String save = (String) session.save(obj);
-        return save;
+    public String add(User obj, Session session) throws Exception {
+        int save = (int) session.save(obj);
+        return String.valueOf(save);
     }
 
     @Override
     public void delete(String id, Session session) throws Exception {
-        Room load = session.load(Room.class, id);
+        Room load = session.load(Room.class, Integer.parseInt(id));
         session.delete(load);
     }
 
 //    itin ain wenw att e room eke ee id ek ain weddi nee pana mge reservation ekk dmama ain krnn be room ekkwth student knkwth manika man  wenwd dnne pddk blmu eka
     @Override
-    public void update(Room obj, Session session) throws Exception {
+    public void update(User obj, Session session) throws Exception {
         session.update(obj);
     }
 
     @Override
-    public Room search(String id, Session session) throws Exception {
+    public User search(String id, Session session) throws Exception {
         try {
-            return session.get(Room.class, id);
+            return session.get(User.class, Integer.parseInt(id));
         } catch (Exception e) {
             session.getTransaction().rollback();
             return null;
@@ -45,7 +44,7 @@ public class RoomRepositoryImpl implements RoomRepository {
 
     @Override
     public boolean isExists(String id, Session session) throws Exception {
-        session.get(Room.class, id);
+        session.get(Room.class, Integer.parseInt(id));
         return true;
     }
 

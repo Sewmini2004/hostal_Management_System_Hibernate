@@ -30,4 +30,8 @@ public class DashBoardController {
     public void btnExitOnAction(ActionEvent event) {
 
     }
+
+    public void btnUserMngOnAction(ActionEvent event) {
+
+    }
 }

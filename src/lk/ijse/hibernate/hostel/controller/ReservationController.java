@@ -184,6 +184,7 @@ public class ReservationController {
             txtPayingAmount.setFocusColor(Paint.valueOf("Red"));
             txtPayingAmount.requestFocus();
         }
+        //ko manika eka
 
     }
 

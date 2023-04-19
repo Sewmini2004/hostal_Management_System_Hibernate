@@ -3,6 +3,7 @@ package lk.ijse.hibernate.hostel.repository;
 import lk.ijse.hibernate.hostel.repository.custom.impl.ReservationRepositoryImpl;
 import lk.ijse.hibernate.hostel.repository.custom.impl.RoomRepositoryImpl;
 import lk.ijse.hibernate.hostel.repository.custom.impl.StudentRepositoryImpl;
+import lk.ijse.hibernate.hostel.repository.custom.impl.UserRepositoryImpl;
 import lk.ijse.hibernate.hostel.util.FactoryConfiguration;
 import org.hibernate.Session;
 
@@ -19,11 +20,13 @@ public class RepoFactory {
     }
 
     public enum Repo {
-        STUDENT, ROOM, RESEVATION
+        STUDENT, ROOM, RESEVATION, USER
     }
 
     public <T extends SuperRepo> T getRepo(Repo repo) {
         switch (repo) {
+            case USER:
+                return (T) new UserRepositoryImpl();
             case STUDENT:
                 return (T) new StudentRepositoryImpl();
             case ROOM:
