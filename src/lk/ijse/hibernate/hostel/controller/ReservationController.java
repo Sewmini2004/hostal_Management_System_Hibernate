@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Paint;
 import javafx.util.StringConverter;
 import lk.ijse.hibernate.hostel.dto.ReservationDTO;
 import lk.ijse.hibernate.hostel.dto.RoomDTO;
@@ -21,6 +22,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class ReservationController {
@@ -155,6 +157,9 @@ public class ReservationController {
         /* -------------------------------------------*/
 
 
+        boolean isAmountMatched = Pattern.compile("^(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))$").matcher(txtPayingAmount.getText()).matches();
+        if (isAmountMatched) {
+
         try {
             StudentDTO student = cmbStdId.getSelectionModel().getSelectedItem();
             RoomDTO room = cmbRoomId.getSelectionModel().getSelectedItem();
@@ -174,6 +179,10 @@ public class ReservationController {
             }
         } catch (Exception e) {
             new Alert(Alert.AlertType.CONFIRMATION, "Added Failed !").show();
+        }
+        }else {
+            txtPayingAmount.setFocusColor(Paint.valueOf("Red"));
+            txtPayingAmount.requestFocus();
         }
 
     }

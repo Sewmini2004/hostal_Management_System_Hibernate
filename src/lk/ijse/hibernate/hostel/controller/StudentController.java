@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Paint;
 import lk.ijse.hibernate.hostel.dto.StudentDTO;
 import lk.ijse.hibernate.hostel.entity.Reservation;
 import lk.ijse.hibernate.hostel.entity.Student;
@@ -19,12 +20,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class StudentController {
-    public TextField txtName;
-    public TextField txtAddress;
-    public TextField txtContactNo;
+    public JFXTextField txtName;
+    public JFXTextField txtAddress;
+    public JFXTextField txtContactNo;
     public DatePicker date;
     public Label lbsId;
     public RadioButton rbtnMale;
@@ -117,6 +119,18 @@ public class StudentController {
             return;
         }
         new ArrayList<Reservation>();
+
+
+        //validation
+        boolean matchesName = Pattern.compile("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$").matcher(txtName.getText()).matches();
+        boolean matchesAddress = Pattern.compile("^[a-zA-Z0-9\\\\s,.'-]+[a-zA-Z0-9\\\\s,.'-]+[a-zA-Z0-9\\\\s,.'-]+$").matcher(txtAddress.getText()).matches();
+        boolean matchesMobile = Pattern.compile("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$").matcher(txtContactNo.getText()).matches();
+
+        if (matchesName) {
+
+            if (matchesAddress) {
+                if (matchesMobile) {
+
         try {
             boolean isUpdated = studentBo.update(new StudentDTO(studentId, name, address, contactNo, dob, gender, new ArrayList<Reservation>()));
             if (isUpdated) {
@@ -135,6 +149,19 @@ public class StudentController {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+                } else {
+                    txtContactNo.setFocusColor(Paint.valueOf("red"));
+                    txtContactNo.requestFocus();
+                }
+            } else {
+                txtAddress.setFocusColor(Paint.valueOf("red"));
+                txtAddress.requestFocus();
+            }
+
+        } else {
+            txtName.setFocusColor(Paint.valueOf("RED"));
+            txtName.requestFocus();
         }
     }
 
@@ -169,26 +196,52 @@ public class StudentController {
             return;
         }
         new ArrayList<Reservation>();
-        try {
-            boolean isAdded = studentBo.add(new StudentDTO(studentId, name, address, contactNo, dob, gender, new ArrayList<Reservation>()));
-            if (isAdded) {
-                ButtonType ok = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
-                ButtonType cancel = new ButtonType("Cancel ", ButtonBar.ButtonData.CANCEL_CLOSE);
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure ? !", ok, cancel);
-                Optional<ButtonType> buttonType = alert.showAndWait();
-                if (buttonType.orElse(cancel) == ok) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Added Success !").show();
-                    initialize();
-                    btnClearOnAction(new ActionEvent());
-                } else {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Added Failed !").show();
 
+
+        //validation
+        boolean matchesName = Pattern.compile("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$").matcher(txtName.getText()).matches();
+        boolean matchesAddress = Pattern.compile("^[a-zA-Z0-9\\\\s,.'-]+[a-zA-Z0-9\\\\s,.'-]+[a-zA-Z0-9\\\\s,.'-]+$").matcher(txtAddress.getText()).matches();
+        boolean matchesMobile = Pattern.compile("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$").matcher(txtContactNo.getText()).matches();
+
+        if (matchesName) {
+
+            if (matchesAddress) {
+                if (matchesMobile) {
+
+                    try {
+                        boolean isAdded = studentBo.add(new StudentDTO(studentId, name, address, contactNo, dob, gender, new ArrayList<Reservation>()));
+                        if (isAdded) {
+                            ButtonType ok = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+                            ButtonType cancel = new ButtonType("Cancel ", ButtonBar.ButtonData.CANCEL_CLOSE);
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure ? !", ok, cancel);
+                            Optional<ButtonType> buttonType = alert.showAndWait();
+                            if (buttonType.orElse(cancel) == ok) {
+                                new Alert(Alert.AlertType.CONFIRMATION, "Added Success !").show();
+                                initialize();
+                                btnClearOnAction(new ActionEvent());
+                            } else {
+                                new Alert(Alert.AlertType.CONFIRMATION, "Added Failed !").show();
+
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    txtContactNo.setFocusColor(Paint.valueOf("red"));
+                    txtContactNo.requestFocus();
                 }
+            } else {
+                txtAddress.setFocusColor(Paint.valueOf("red"));
+                txtAddress.requestFocus();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        } else {
+            txtName.setFocusColor(Paint.valueOf("RED"));
+            txtName.requestFocus();
         }
     }
+
 
     public void btnSearchOnAction(ActionEvent event) {
 

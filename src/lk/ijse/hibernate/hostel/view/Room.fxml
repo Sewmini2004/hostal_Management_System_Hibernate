@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -31,16 +30,6 @@
                 <Font name="System Bold" size="32.0" />
             </font>
         </Label>
-        <TextField fx:id="txtKeyMoney" layoutX="72.0" layoutY="277.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="33.0" prefWidth="236.0" promptText="keyMoney  :" style="-fx-background-color: gray; -fx-text-fill: black; -fx-prompt-text-fill: black; -fx-border-color: black;">
-            <font>
-                <Font name="Segoe UI Semilight" size="17.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="txtQty" layoutX="642.0" layoutY="272.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="47.0" prefWidth="236.0" promptText="Qty  :" style="-fx-background-color: gray; -fx-text-fill: black; -fx-prompt-text-fill: black; -fx-border-color: black;">
-            <font>
-                <Font name="Segoe UI Semilight" size="17.0" />
-            </font>
-        </TextField>
         <Label fx:id="lblRoomId" layoutX="72.0" layoutY="148.0" prefHeight="44.0" prefWidth="198.0" style="-fx-border-color: black;" />
         <ComboBox fx:id="cmbType" layoutX="358.0" layoutY="275.0" onAction="#cmbTypeOnAction" prefHeight="40.0" prefWidth="236.0" promptText="     type  :" style="-fx-border-color: black;" />
         <JFXButton layoutX="822.0" layoutY="361.0" onAction="#btnAddOnAction" prefHeight="59.0" prefWidth="180.0" style="-fx-background-color: #053B87; -fx-background-radius: 15;" text="Add" textFill="WHITE">
@@ -87,5 +76,15 @@
                 <Font name="System Bold" size="15.0" />
             </font>
         </JFXButton>
+      <JFXTextField fx:id="txtKeyMoney" layoutX="72.0" layoutY="274.0" prefHeight="42.0" prefWidth="198.0" promptText=" Key Money  :" style="-fx-border-color: black;">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="txtQty" layoutX="712.0" layoutY="274.0" prefHeight="47.0" prefWidth="198.0" promptText=" Qty  :" style="-fx-border-color: black;">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </JFXTextField>
     </children>
 </AnchorPane>

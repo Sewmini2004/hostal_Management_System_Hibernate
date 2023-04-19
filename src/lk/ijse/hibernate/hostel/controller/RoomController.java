@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Paint;
 import lk.ijse.hibernate.hostel.dto.RoomDTO;
 import lk.ijse.hibernate.hostel.entity.Reservation;
 import lk.ijse.hibernate.hostel.entity.Room;
@@ -20,12 +21,13 @@ import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class RoomController {
 
-    public TextField txtKeyMoney;
-    public TextField txtQty;
+    public JFXTextField txtKeyMoney;
+    public JFXTextField txtQty;
 
 
     public Label lblRoomId;
@@ -72,6 +74,12 @@ public class RoomController {
         double keyMoney = Double.parseDouble(txtKeyMoney.getText());
         int qty = Integer.parseInt(txtQty.getText());
         new ArrayList<Reservation>();
+
+        boolean isAmountMatched = Pattern.compile("^(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))$").matcher(txtKeyMoney.getText()).matches();
+        boolean isQtyMatched = Pattern.compile("^(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))$").matcher(txtQty.getText()).matches();
+
+        if (isAmountMatched) {
+            if (isQtyMatched) {
         try {
             ButtonType ok = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
             ButtonType cancel = new ButtonType("Cancel ", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -90,8 +98,17 @@ public class RoomController {
             new Alert(Alert.AlertType.CONFIRMATION, "Added Failed !").show();
         }//mem wdak krnn pluwm onnam manika anthmit mokk unth wenn on deyk thyenonam finally ek athult dnn pluwm meke em ekk nneda ne clear wen wge dewl ekt tinne btn ekk buttn ekk thbunta api ekkknek add krl iwrunma okkom clear wenn dnn e button ek athn cl krnn manika
 
+        }else {
+            txtKeyMoney.setFocusColor(Paint.valueOf("Red"));
+            txtKeyMoney.requestFocus();
+        }
+        }else {
+            txtQty.setFocusColor(Paint.valueOf("Red"));
+            txtQty.requestFocus();
+        }
 
     }
+
 
 
     public void btnDeleteOnAction(ActionEvent event) {
@@ -117,6 +134,10 @@ public class RoomController {
         double keyMoney = Double.parseDouble(txtKeyMoney.getText());
         int qty = Integer.parseInt(txtQty.getText());
         new ArrayList<Reservation>();
+        boolean isAmountMatched = Pattern.compile("^(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))$").matcher(txtKeyMoney.getText()).matches();
+        boolean isQtyMatched = Pattern.compile("^(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))$").matcher(txtQty.getText()).matches();
+          if (isAmountMatched) {
+            if (isQtyMatched) {
         try {
             boolean isUpdated = roomBo.update(new RoomDTO(roomId, type, keyMoney, qty, new ArrayList<Reservation>()));
             if (isUpdated) {
@@ -135,6 +156,14 @@ public class RoomController {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+            }else {
+                txtKeyMoney.setFocusColor(Paint.valueOf("Red"));
+                txtKeyMoney.requestFocus();
+            }
+        }else {
+            txtQty.setFocusColor(Paint.valueOf("Red"));
+            txtQty.requestFocus();
         }
 
 

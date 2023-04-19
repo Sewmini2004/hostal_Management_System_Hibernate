@@ -7,7 +7,6 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -28,21 +27,6 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="797.0" layoutX="32.0" layoutY="22.0" opacity="0.41" stroke="BLACK" strokeType="INSIDE" width="1044.0" />
-      <TextField fx:id="txtName" layoutX="65.0" layoutY="208.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="46.0" prefWidth="404.0" promptText="Student Name  :" style="-fx-background-color: gray; -fx-text-fill: black; -fx-prompt-text-fill: black; -fx-border-color: black;">
-         <font>
-            <Font name="Segoe UI Semilight" size="19.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="txtAddress" layoutX="69.0" layoutY="271.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="397.0" promptText="Address  :" style="-fx-background-color: gray; -fx-text-fill: black; -fx-prompt-text-fill: black; -fx-border-color: black;">
-         <font>
-            <Font name="Segoe UI Semilight" size="19.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="txtContactNo" layoutX="526.0" layoutY="271.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="255.0" promptText="Contact No  :" style="-fx-background-color: gray; -fx-text-fill: white; -fx-prompt-text-fill: black; -fx-border-color: black;">
-         <font>
-            <Font name="Segoe UI Semilight" size="19.0" />
-         </font>
-      </TextField>
       <DatePicker fx:id="date" layoutX="526.0" layoutY="340.0" onAction="#dateOnAction" prefHeight="42.0" prefWidth="255.0" promptText="Date Of Birth  :" style="-fx-background-color: black;" />
       <Label fx:id="lbsId" layoutX="69.0" layoutY="135.0" prefHeight="44.0" prefWidth="219.0" style="-fx-border-color: black;" />
       <RadioButton fx:id="rbtnMale" layoutX="200.0" layoutY="339.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="93.0" text="Male">
@@ -114,5 +98,8 @@
             <TableColumn fx:id="colBdy" prefWidth="128.0" text=" Birthday" />
          </columns>
       </TableView>
+      <JFXTextField fx:id="txtName" layoutX="69.0" layoutY="208.0" prefHeight="47.0" prefWidth="397.0" promptText="Student Name  :" style="-fx-border-color: black;" />
+      <JFXTextField fx:id="txtAddress" layoutX="69.0" layoutY="270.0" prefHeight="47.0" prefWidth="397.0" promptText=" Address  :" style="-fx-border-color: black;" />
+      <JFXTextField fx:id="txtContactNo" layoutX="565.0" layoutY="270.0" prefHeight="47.0" prefWidth="262.0" promptText="Contact No :" style="-fx-border-color: black;" />
    </children>
 </AnchorPane>
