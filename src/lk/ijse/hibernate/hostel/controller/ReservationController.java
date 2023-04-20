@@ -11,6 +11,8 @@ import javafx.util.StringConverter;
 import lk.ijse.hibernate.hostel.dto.ReservationDTO;
 import lk.ijse.hibernate.hostel.dto.RoomDTO;
 import lk.ijse.hibernate.hostel.dto.StudentDTO;
+import lk.ijse.hibernate.hostel.entity.Room;
+import lk.ijse.hibernate.hostel.entity.Student;
 import lk.ijse.hibernate.hostel.service.custom.ReservationBo;
 import lk.ijse.hibernate.hostel.service.custom.RoomBo;
 import lk.ijse.hibernate.hostel.service.custom.StudentBo;
@@ -18,6 +20,7 @@ import lk.ijse.hibernate.hostel.service.util.Converter;
 import lk.ijse.hibernate.hostel.service.util.ServiceFactory;
 import lk.ijse.hibernate.hostel.view.tm.ReservationTM;
 
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -184,7 +187,7 @@ public class ReservationController {
                 room.getReservations().add(Converter.toReservation(reservationDTO));
                 //itpsse api parentwa update krno ethkota e parentge athule reservation LIST ekta api dpu ar reservation eka
                 //ekta adala wen Reservation table ekta ghm save weno mek thrunda manikata hrii
-                boolean isAdded = roomBo.update(room);
+                boolean isAdded = roomBo.add(room);
                 //mgeth std dmmta update wel ne mn mulin room ekn dla tmai psse wens krl thynne manika dn blddi wda ne epr room dmmama wda
                 //innwda oo mkedi
                 new Alert(Alert.AlertType.CONFIRMATION, "Added Success !").show();
@@ -209,6 +212,67 @@ public class ReservationController {
     }
 
     public void btnUpdateOnAction(ActionEvent event) {
+
+        String resId = lblReservationId.getText();
+        String status = (String) cmbStatus.getSelectionModel().getSelectedItem();
+
+        double keyMoney = Double.parseDouble(lblKeyMoney.getText());
+        double payingAmount = Double.parseDouble(txtPayingAmount.getText());
+        double amountBalance = keyMoney - payingAmount;
+        lblBalance.setText(String.valueOf(amountBalance));
+
+        LocalDate fromValue = dateFrom.getValue();
+        Date from = Date.from(fromValue.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        LocalDate toValue = dateTo.getValue();
+        Date to = Date.from(toValue.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        /* -------------------------------------------*/
+
+
+        boolean isAmountMatched = Pattern.compile("^(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))$").matcher(txtPayingAmount.getText()).matches();
+        if (isAmountMatched) {
+
+            try {
+                StudentDTO student = cmbStdId.getSelectionModel().getSelectedItem();
+                //student gtta
+                RoomDTO room = cmbRoomId.getSelectionModel().getSelectedItem();
+                //room ek gtta manika
+                room.setQty(room.getQty()-1);
+                //me room eke qty eken ekk adu kra
+                ButtonType ok = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+                ButtonType cancel = new ButtonType("Cancel ", ButtonBar.ButtonData.CANCEL_CLOSE);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure ? !", ok, cancel);
+                Optional<ButtonType> buttonType = alert.showAndWait();
+                if (buttonType.orElse(cancel) == ok) {
+
+                    //reservcation ek hduwaw ekta adala student wai room ekai thmai ar uddi gtte e dekth dlane mek hdnne wenne ek em dla mek hduwa reservation eka
+                    ReservationDTO reservationDTO = new ReservationDTO(resId, status, keyMoney, payingAmount, amountBalance, student, room, from, to);
+
+                    //ek parent knk thorgtta manika api dn mthendi room parent wa thorgnne eyge wensak wen nisa
+                    //smhrwelwta parent 2k htyta dekema wensk wenonam dekma update krnn weno em wenne nthnm thmnt kmthi ekk thorgnn pluwm
+                    //mek thrunda blnna manikata hrii
+                    //itpsse manika api e parent ta adala reservation lsit ekt add krno ape reservation eka
+                    room.getReservations().add(Converter.toReservation(reservationDTO));
+                    //itpsse api parentwa update krno ethkota e parentge athule reservation LIST ekta api dpu ar reservation eka
+                    //ekta adala wen Reservation table ekta ghm save weno mek thrunda manikata hrii
+                    boolean isAdded = roomBo.update(room);
+                    //mgeth std dmmta update wel ne mn mulin room ekn dla tmai psse wens krl thynne manika dn blddi wda ne epr room dmmama wda
+                    //innwda oo mkedi
+                    new Alert(Alert.AlertType.CONFIRMATION, "Added Success !").show();
+//                initialize();
+//                btnClearOnAction(event);
+                } else {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Cancelled !").show();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                new Alert(Alert.AlertType.CONFIRMATION, "Added Failed !").show();
+            }
+        }else {
+            txtPayingAmount.setFocusColor(Paint.valueOf("Red"));
+            txtPayingAmount.requestFocus();
+        }
     }
 
     public void btnClearOnAction(ActionEvent event) {
@@ -218,6 +282,33 @@ public class ReservationController {
     }
 
     public void btnSearchOnAction(ActionEvent event) {
+
+        String resId = txtAccountNo.getText();
+        try {
+            boolean isAvailables = reservationBo.isExists(resId);
+            if (isAvailables) {
+                ReservationDTO search = reservationBo.search(resId);
+                lblReservationId.setText(search.getResId());
+                lblStatus.setText(search.getStatus());
+                txtPayingAmount.setText(String.valueOf(search.getPayingAmount()));
+                lblBalance.setText(String.valueOf(search.getAmountBalance()));
+                cmbStdId.getSelectionModel().select(Integer.parseInt(search.getStudent().getStudentId()));
+                lblName.setText(search.getStudent().getName());
+                lblAddress.setText(search.getStudent().getAddress());
+                cmbRoomId.getSelectionModel().select(Integer.parseInt(search.getRoom().getRoomTypeId()));
+                lblTypeRoom.setText(search.getRoom().getType());
+                lblKeyMoney.setText(String.valueOf(search.getRoom().getKeyMoney()));
+                
+
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Student is not found !!");
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }
 

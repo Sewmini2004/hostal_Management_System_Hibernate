@@ -53,9 +53,6 @@ public class UserController {
     private JFXTextField txtUsername;
 
     @FXML
-    private JFXTextField txtEmail;
-
-    @FXML
     private JFXTextField txtContact;
 
     @FXML
@@ -72,8 +69,9 @@ public class UserController {
             tblUser.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("userId"));
             tblUser.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("Name"));
             tblUser.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("address"));
-            tblUser.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("username"));
-            tblUser.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("password"));
+            tblUser.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("contact"));
+            tblUser.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("username"));
+            tblUser.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("password"));
             List<UserTM> userTMList = userBo.getAll().stream().map(user -> new UserTM(
                     user.getUserId(),
                     user.getName(),
@@ -138,7 +136,6 @@ public class UserController {
     void btnDeleteOnAction(ActionEvent event) {
 
     }
-    //qty ek wda krn ntte kthnei manika mn ee mgul heduwe nee appa ko kthnei thynne eka
     @FXML
     void btnSearchOnAction(ActionEvent event) {
         String userId = txtUserId.getText();

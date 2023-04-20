@@ -43,13 +43,13 @@ public class AppInitializer extends Application {
     }
 
     public static void main(String[] args) {
-//        launch(args);
+        launch(args);
 
-        Session session = FactoryConfiguration.getInstance().getSession();
+ /*       Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        /*--------------------------------------------------------------------------*/
+        *//*--------------------------------------------------------------------------*//*
 
-        /*  Customer Object   <--Parent */
+        *//*  Customer Object   <--Parent *//*
         Customer customer = new Customer();
         customer.setId(1);
         customer.setCustName("Vidura");
@@ -57,7 +57,7 @@ public class AppInitializer extends Application {
         List<Orderr> list = new ArrayList<>();
         customer.setOrderList(list);
 
-        /*  Order object    <--Child */
+        *//*  Order object    <--Child *//*
         Orderr orderr = new Orderr();
         orderr.setId(1);
         orderr.setOrderName("CreamCracker");
@@ -66,14 +66,14 @@ public class AppInitializer extends Application {
         //cascade.all thyeddi manika data add krddi arent dmmama child w add unane neda?? innoda oo doy mthda ai attata ahuwe pana ow itin mona krnnd enm doygmu mn ht me tk ekin ek kyl dennmp panata hdee aneeoye athi
 
 //        doygmu enm ht me tk kyl dennm hdee ja ha enm doygmu pana haainn 3n ekn ennm mn hdee ha  ha
-        /*
+        *//*
         * Cascade.Persist
         * Cascade.Remove
         * Cascade.Merge
         * Cascade.All ( mek ar hama ekema ekathuwak manika )
-        */
+        *//*
 
-        /*  dn manika mn parent dala child wla save krnne onna blnna    */
+        *//*  dn manika mn parent dala child wla save krnne onna blnna    *//*
         customer.getOrderList().add(orderr);
 
         session.save(customer);
@@ -108,11 +108,11 @@ public class AppInitializer extends Application {
 
 
 
-        /*--------------------------------------------------------------------------*/
+        *//*--------------------------------------------------------------------------*//*
         transaction.commit();
         session.close();
 
-        /*
+        *//*
         thrunda cascade gn tkak oo oy wgemai oy add krddine delete krddidth hrid manika
 
         Hibernate: create table Customer (id integer not null, custName varchar(255), primary key (id)) engine=InnoDB

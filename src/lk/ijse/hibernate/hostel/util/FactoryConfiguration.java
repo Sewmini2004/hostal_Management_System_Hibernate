@@ -1,5 +1,9 @@
 package lk.ijse.hibernate.hostel.util;
 
+import lk.ijse.hibernate.hostel.entity.Reservation;
+import lk.ijse.hibernate.hostel.entity.Room;
+import lk.ijse.hibernate.hostel.entity.Student;
+import lk.ijse.hibernate.hostel.entity.User;
 import lk.ijse.hibernate.hostel.entity.test.Customer;
 import lk.ijse.hibernate.hostel.entity.test.Orderr;
 import org.hibernate.Session;
@@ -13,12 +17,12 @@ public class FactoryConfiguration {
 
     private FactoryConfiguration(){
         Configuration configuration = new Configuration()
-               /* .addAnnotatedClass(Student.class)
+                .addAnnotatedClass(Student.class)
                 .addAnnotatedClass(Room.class)
                 .addAnnotatedClass(Reservation.class)
-                .addAnnotatedClass(User.class)*/
-                .addAnnotatedClass(Customer.class)
-                .addAnnotatedClass(Orderr.class);
+                .addAnnotatedClass(User.class);
+              /*  .addAnnotatedClass(Customer.class)
+                .addAnnotatedClass(Orderr.class);*/
         sessionFactory = configuration.buildSessionFactory();
     }
 
@@ -31,4 +35,3 @@ public class FactoryConfiguration {
         return sessionFactory.openSession();
     }
 }
-//manika mt me error ek oya thniym hdla ona

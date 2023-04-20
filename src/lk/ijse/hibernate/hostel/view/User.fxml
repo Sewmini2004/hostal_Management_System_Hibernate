@@ -30,7 +30,7 @@
                 <Font name="System Bold" size="32.0" />
             </font>
         </Label>
-        <Label fx:id="lblUserId" layoutX="72.0" layoutY="148.0" prefHeight="44.0" prefWidth="198.0" style="-fx-border-color: black;" />
+        <Label fx:id="lblUserId" layoutX="64.0" layoutY="148.0" prefHeight="44.0" prefWidth="198.0" style="-fx-border-color: black;" />
         <JFXButton layoutX="822.0" layoutY="361.0" onAction="#btnAddOnAction" prefHeight="59.0" prefWidth="180.0" style="-fx-background-color: #053B87; -fx-background-radius: 15;" text="Add" textFill="WHITE">
             <font>
                 <Font size="21.0" />
@@ -89,19 +89,13 @@
             <Font size="19.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="txtEmail" layoutX="64.0" layoutY="290.0" prefHeight="42.0" prefWidth="198.0" promptText="Email : " style="-fx-border-color: black;">
+      <JFXTextField fx:id="txtContact" layoutX="64.0" layoutY="295.0" prefHeight="42.0" prefWidth="198.0" promptText="Contact : " style="-fx-border-color: black;">
          <font>
             <Font size="17.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="txtContact" layoutX="64.0" layoutY="346.0" prefHeight="42.0" prefWidth="198.0" promptText=" Key Money  :" style="-fx-border-color: black;" text="Contact : ">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </JFXTextField>
-      <PasswordField fx:id="txtPass1" layoutX="335.0" layoutY="299.0" style="-fx-border-color: black;" />
-      <PasswordField fx:id="txtPass2" layoutX="335.0" layoutY="345.0" style="-fx-border-color: black;" />
-      <JFXTextField fx:id="txtAddress" layoutX="551.0" layoutY="238.0" prefHeight="47.0" prefWidth="198.0" promptText="Address : " style="-fx-border-color: black;">
+      <PasswordField fx:id="txtPass1" layoutX="335.0" layoutY="299.0" prefHeight="47.0" prefWidth="198.0" style="-fx-border-color: black;" />
+      <JFXTextField fx:id="txtAddress" layoutX="598.0" layoutY="236.0" prefHeight="47.0" prefWidth="198.0" promptText="Address : " style="-fx-border-color: black;">
          <font>
             <Font size="19.0" />
          </font>
