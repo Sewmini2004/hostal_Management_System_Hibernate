@@ -289,7 +289,6 @@ public class ReservationController {
             if (isAvailables) {
                 ReservationDTO search = reservationBo.search(resId);
                 lblReservationId.setText(search.getResId());
-                lblStatus.setText(search.getStatus());
                 txtPayingAmount.setText(String.valueOf(search.getPayingAmount()));
                 lblBalance.setText(String.valueOf(search.getAmountBalance()));
                 cmbStdId.getSelectionModel().select(Integer.parseInt(search.getStudent().getStudentId()));
@@ -298,15 +297,18 @@ public class ReservationController {
                 cmbRoomId.getSelectionModel().select(Integer.parseInt(search.getRoom().getRoomTypeId()));
                 lblTypeRoom.setText(search.getRoom().getType());
                 lblKeyMoney.setText(String.valueOf(search.getRoom().getKeyMoney()));
-                
+                cmbStatus.setItems(observableList);
+               cmbStatus.getSelectionModel().select(search.getStatus());
+
 
             } else {
-                new Alert(Alert.AlertType.WARNING, "Student is not found !!");
+                new Alert(Alert.AlertType.WARNING, "Reservation is not found !!");
             }
 
 
         } catch (Exception e) {
-            e.printStackTrace();
+            new Alert(Alert.AlertType.WARNING, "Reservation is not found !!");
+
         }
 
 

@@ -192,6 +192,7 @@ public class RoomController {
                 cmbType.getSelectionModel().select(getRoom.getType());
                 txtKeyMoney.setText(String.valueOf(getRoom.getKeyMoney()));
                 txtQty.setText(String.valueOf(getRoom.getQty()));
+
             } else {
                 new Alert(Alert.AlertType.WARNING, "Room is not found !!");
 

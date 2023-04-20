@@ -15,10 +15,11 @@ import java.util.List;
 
 public class ReservationBoImple implements ReservationBo {
     private final ReservationRepository reservationRepository = RepoFactory.getInstance().getRepo(RepoFactory.Repo.RESEVATION);
-    Session session = FactoryConfiguration.getInstance().getSession();
 
     @Override
     public List<ReservationDTO> getAll() throws Exception {
+        Session session = FactoryConfiguration.getInstance().getSession();
+
         List<Reservation> all = reservationRepository.getAll(session);
         ArrayList<ReservationDTO> list = new ArrayList<>();
         for (Reservation reservation: all) {
@@ -29,6 +30,7 @@ public class ReservationBoImple implements ReservationBo {
 
     @Override
     public boolean add(ReservationDTO reservationDTO) throws Exception {
+        Session session = FactoryConfiguration.getInstance().getSession();
 
         Transaction transaction = session.beginTransaction();
         String add = reservationRepository.add(Converter.toReservation(reservationDTO), session);
@@ -39,6 +41,8 @@ public class ReservationBoImple implements ReservationBo {
 
     @Override
     public boolean delete(String id) throws Exception {
+        Session session = FactoryConfiguration.getInstance().getSession();
+
         Transaction transaction = session.beginTransaction();
         reservationRepository.delete(id, session);
         transaction.commit();
@@ -49,6 +53,7 @@ public class ReservationBoImple implements ReservationBo {
 
     @Override
     public boolean update(ReservationDTO reservationDTO) throws Exception {
+        Session session = FactoryConfiguration.getInstance().getSession();
 
         Transaction transaction = session.beginTransaction();
         reservationRepository.update(Converter.toReservation(reservationDTO), session);
@@ -60,6 +65,8 @@ public class ReservationBoImple implements ReservationBo {
 
     @Override
     public ReservationDTO search(String id) throws Exception {
+        Session session = FactoryConfiguration.getInstance().getSession();
+
         Transaction transaction = session.beginTransaction();
        ReservationDTO reservationDTO = Converter.fromReservation(reservationRepository.search(id, session));
         transaction.commit();
@@ -69,6 +76,7 @@ public class ReservationBoImple implements ReservationBo {
 
     @Override
     public boolean isExists(String id) throws Exception {
+        Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         reservationRepository.search(id, session);
         transaction.commit();

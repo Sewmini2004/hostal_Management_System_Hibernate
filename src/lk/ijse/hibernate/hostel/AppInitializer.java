@@ -5,17 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import lk.ijse.hibernate.hostel.entity.Room;
-import lk.ijse.hibernate.hostel.entity.test.Customer;
-import lk.ijse.hibernate.hostel.entity.test.Orderr;
-import lk.ijse.hibernate.hostel.util.FactoryConfiguration;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class AppInitializer extends Application {
 
