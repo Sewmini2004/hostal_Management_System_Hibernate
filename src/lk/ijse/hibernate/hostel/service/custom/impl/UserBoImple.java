@@ -27,6 +27,7 @@ public class UserBoImple implements UserBo {
         for (User user : all) {
             list.add(Converter.fromUser(user));
         }
+        session.close();
         return list;
     }
 

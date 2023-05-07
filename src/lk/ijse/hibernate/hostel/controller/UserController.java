@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Paint;
 import lk.ijse.hibernate.hostel.dto.RoomDTO;
 import lk.ijse.hibernate.hostel.dto.UserDTO;
 import lk.ijse.hibernate.hostel.entity.Reservation;
@@ -17,7 +18,10 @@ import lk.ijse.hibernate.hostel.view.tm.UserTM;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import static com.sun.xml.internal.ws.policy.sourcemodel.wspolicy.XmlToken.Name;
 
 public class UserController {
 
@@ -71,7 +75,7 @@ public class UserController {
             tblUser.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("address"));
             tblUser.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("contact"));
             tblUser.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("username"));
-            tblUser.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("password"));
+
             List<UserTM> userTMList = userBo.getAll().stream().map(user -> new UserTM(
                     user.getUserId(),
                     user.getName(),
@@ -102,7 +106,7 @@ public class UserController {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure ? !", ok, cancel);
             Optional<ButtonType> buttonType = alert.showAndWait();
             if (buttonType.orElse(cancel) == ok) {
-                boolean isAdded = userBo.add(new UserDTO(userId,Name,address,contact,username,password));
+                boolean isAdded = userBo.add(new UserDTO(userId, Name, address, contact, username, password));
                 new Alert(Alert.AlertType.CONFIRMATION, "Added Success !").show();
                 initialize();
             } else {
@@ -115,6 +119,7 @@ public class UserController {
 
 
     }
+
     private void loadUserId() throws Exception {
         lblUserId.setText(String.valueOf(userBo.generateNextId()));
     }
@@ -122,20 +127,36 @@ public class UserController {
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
-    lblUserId.setText(null);
-    txtName.setText(null);
-    txtAddress.setText(null);
-    txtContact.setText(null);
-    txtUsername.setText(null);
-    txtPass1.setText(null);
-    initialize();
+        lblUserId.setText(null);
+        txtName.setText(null);
+        txtAddress.setText(null);
+        txtContact.setText(null);
+        txtUsername.setText(null);
+        txtPass1.setText(null);
+        initialize();
 
     }
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-
+        try {
+            ButtonType ok = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+            ButtonType cancel = new ButtonType("Cancel ", ButtonBar.ButtonData.CANCEL_CLOSE);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure ? !", ok, cancel);
+            Optional<ButtonType> buttonType = alert.showAndWait();
+            if (buttonType.orElse(cancel) == ok) {
+                boolean isDelete = userBo.delete(Integer.parseInt(txtUserId.getText()));
+                new Alert(Alert.AlertType.CONFIRMATION, "Deleted Success !").show();
+                initialize();
+            } else {
+                new Alert(Alert.AlertType.CONFIRMATION, "Cancelled !").show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.CONFIRMATION, "Delete Failed !").show();
+        }
     }
+
     @FXML
     void btnSearchOnAction(ActionEvent event) {
         String userId = txtUserId.getText();
@@ -149,10 +170,8 @@ public class UserController {
                 txtContact.setText(search.getContact());
                 txtUsername.setText(search.getUsername());
                 txtPass1.setText(search.getPassword());
-
             } else {
                 new Alert(Alert.AlertType.WARNING, "User is not found !!");
-
             }
         } catch (Exception e) {
             new Alert(Alert.AlertType.WARNING, "User is not found !!");
@@ -164,6 +183,29 @@ public class UserController {
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
 
+
+        String userId = lblUserId.getText();
+        String name = txtName.getText();
+        String username = txtUsername.getText();
+        String contact = txtContact.getText();
+        String address = txtAddress.getText();
+        String pass = txtPass1.getText();
+
+        try {
+            ButtonType ok = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+            ButtonType cancel = new ButtonType("Cancel ", ButtonBar.ButtonData.CANCEL_CLOSE);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure ? !", ok, cancel);
+            Optional<ButtonType> buttonType = alert.showAndWait();
+            if (buttonType.orElse(cancel) == ok) {
+                boolean isUpdate = userBo.update(new UserDTO(Integer.parseInt(userId), name, address, contact, username, pass));
+                new Alert(Alert.AlertType.CONFIRMATION, "Updated Success !").show();
+                initialize();
+            } else {
+                new Alert(Alert.AlertType.CONFIRMATION, "Cancelled !").show();
+            }
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.CONFIRMATION, "Update Failed !").show();
+        }
     }
 
     @FXML

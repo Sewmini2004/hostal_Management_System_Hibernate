@@ -5,6 +5,7 @@ import lk.ijse.hibernate.hostel.entity.Student;
 import lk.ijse.hibernate.hostel.repository.custom.RoomRepository;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -12,7 +13,9 @@ import java.util.List;
 public class RoomRepositoryImpl implements RoomRepository {
     @Override
     public List<Room> getAll(Session session) throws Exception {
-        return session.createQuery("from Room").getResultList();
+        Query from_room = session.createQuery("from Room");
+        from_room.setCacheable(true);
+        return from_room.getResultList();
     }
 
     @Override

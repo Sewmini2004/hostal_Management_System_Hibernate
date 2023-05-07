@@ -5,13 +5,16 @@ import lk.ijse.hibernate.hostel.entity.User;
 import lk.ijse.hibernate.hostel.repository.custom.RoomRepository;
 import lk.ijse.hibernate.hostel.repository.custom.UserRepository;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
 public class UserRepositoryImpl implements UserRepository {
     @Override
     public List<User> getAll(Session session) throws Exception {
-        return session.createQuery("from User ").getResultList();
+        Query from_user_ = session.createQuery("from User ");
+        from_user_.setCacheable(true);
+        return from_user_.getResultList();
     }
 
     @Override
@@ -22,7 +25,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public void delete(String id, Session session) throws Exception {
-        Room load = session.load(Room.class, Integer.parseInt(id));
+        User load = session.load(User.class, Integer.parseInt(id));
         session.delete(load);
     }
 

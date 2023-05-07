@@ -1,11 +1,9 @@
 package lk.ijse.hibernate.hostel.entity;
 
 import lombok.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.util.Date;
 
@@ -16,6 +14,8 @@ import java.util.Date;
 @ToString
 @Entity
 @Transactional
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Reservation implements SuperEntity {
     @Id
     private String resId;
@@ -24,9 +24,12 @@ public class Reservation implements SuperEntity {
     private double payingAmount;
     private double amountBalance;
     @ManyToOne()
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 //    @JoinColumn(referencedColumnName = "studentId")
     private Student student;
+
     @ManyToOne()
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 //    @JoinColumn(referencedColumnName = "roomTypeId")
     private Room room;
     private Date dateTo;

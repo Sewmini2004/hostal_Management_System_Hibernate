@@ -5,6 +5,7 @@ import lk.ijse.hibernate.hostel.entity.Student;
 import lk.ijse.hibernate.hostel.repository.custom.ReservationRepository;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -16,8 +17,9 @@ public class ReservationRepositoryImpl implements ReservationRepository {
     @Override
     public List<Reservation> getAll(Session session) throws SQLException, ClassNotFoundException {
         try {
-            return session.createQuery("from Reservation").getResultList();
-
+            Query from_reservation = session.createQuery("from Reservation");
+            from_reservation.setCacheable(true);
+            return from_reservation.getResultList();
         } catch (Exception e) {
             return null;
         }

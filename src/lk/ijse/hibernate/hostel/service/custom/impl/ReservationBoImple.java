@@ -22,9 +22,10 @@ public class ReservationBoImple implements ReservationBo {
 
         List<Reservation> all = reservationRepository.getAll(session);
         ArrayList<ReservationDTO> list = new ArrayList<>();
-        for (Reservation reservation: all) {
+        for (Reservation reservation : all) {
             list.add(Converter.fromReservation(reservation));
         }
+        session.close();
         return list;
     }
 
@@ -68,7 +69,7 @@ public class ReservationBoImple implements ReservationBo {
         Session session = FactoryConfiguration.getInstance().getSession();
 
         Transaction transaction = session.beginTransaction();
-       ReservationDTO reservationDTO = Converter.fromReservation(reservationRepository.search(id, session));
+        ReservationDTO reservationDTO = Converter.fromReservation(reservationRepository.search(id, session));
         transaction.commit();
         session.close();
         return reservationDTO;

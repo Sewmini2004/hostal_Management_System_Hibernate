@@ -5,6 +5,7 @@ import lk.ijse.hibernate.hostel.entity.Student;
 import lk.ijse.hibernate.hostel.repository.custom.StudentRepository;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.io.Serializable;
 import java.sql.SQLException;
@@ -14,7 +15,9 @@ public class StudentRepositoryImpl implements StudentRepository {
 
     @Override
     public List<Student> getAll(Session session) throws Exception {
-        return session.createQuery("from Student").getResultList();
+        Query from_student = session.createQuery("from Student");
+        from_student.setCacheable(true);
+        return from_student.getResultList();
     }
 
     @Override

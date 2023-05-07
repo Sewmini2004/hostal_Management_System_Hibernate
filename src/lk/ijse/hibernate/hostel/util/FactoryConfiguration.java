@@ -4,8 +4,6 @@ import lk.ijse.hibernate.hostel.entity.Reservation;
 import lk.ijse.hibernate.hostel.entity.Room;
 import lk.ijse.hibernate.hostel.entity.Student;
 import lk.ijse.hibernate.hostel.entity.User;
-import lk.ijse.hibernate.hostel.entity.test.Customer;
-import lk.ijse.hibernate.hostel.entity.test.Orderr;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -21,8 +19,6 @@ public class FactoryConfiguration {
                 .addAnnotatedClass(Room.class)
                 .addAnnotatedClass(Reservation.class)
                 .addAnnotatedClass(User.class);
-              /*  .addAnnotatedClass(Customer.class)
-                .addAnnotatedClass(Orderr.class);*/
         sessionFactory = configuration.buildSessionFactory();
     }
 

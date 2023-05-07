@@ -145,8 +145,8 @@ public class ReservationController {
 
         /*Get values from UI*/
         String resId = lblReservationId.getText();
-        String status = (String) cmbStatus.getSelectionModel().getSelectedItem();
-
+        String status = (String) cmbStatus.getValue();
+        System.out.println(status);
         double keyMoney = Double.parseDouble(lblKeyMoney.getText());
         double payingAmount = Double.parseDouble(txtPayingAmount.getText());
         double amountBalance = keyMoney - payingAmount;
@@ -187,7 +187,7 @@ public class ReservationController {
                 room.getReservations().add(Converter.toReservation(reservationDTO));
                 //itpsse api parentwa update krno ethkota e parentge athule reservation LIST ekta api dpu ar reservation eka
                 //ekta adala wen Reservation table ekta ghm save weno mek thrunda manikata hrii
-                boolean isAdded = roomBo.add(room);
+                boolean isAdded = roomBo.update(room);
                 //mgeth std dmmta update wel ne mn mulin room ekn dla tmai psse wens krl thynne manika dn blddi wda ne epr room dmmama wda
                 //innwda oo mkedi
                 new Alert(Alert.AlertType.CONFIRMATION, "Added Success !").show();

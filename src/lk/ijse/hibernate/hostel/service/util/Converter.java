@@ -1,13 +1,7 @@
 package lk.ijse.hibernate.hostel.service.util;
 
-import lk.ijse.hibernate.hostel.dto.ReservationDTO;
-import lk.ijse.hibernate.hostel.dto.RoomDTO;
-import lk.ijse.hibernate.hostel.dto.StudentDTO;
-import lk.ijse.hibernate.hostel.dto.UserDTO;
-import lk.ijse.hibernate.hostel.entity.Reservation;
-import lk.ijse.hibernate.hostel.entity.Room;
-import lk.ijse.hibernate.hostel.entity.Student;
-import lk.ijse.hibernate.hostel.entity.User;
+import lk.ijse.hibernate.hostel.dto.*;
+import lk.ijse.hibernate.hostel.entity.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +11,30 @@ public class Converter {
 
     /* From --- entity > DTO */
     /* To ---  DTO > entity */
+
+    public static CustomDTO fromCustom(Custom custom) {
+        return new CustomDTO(
+                custom.getResId(),
+                custom.getStudentId(),
+                custom.getRoomId(),
+                custom.getStudentName(),
+                custom.getRoomType(),
+                custom.getKeymoney(),
+                custom.getAmount()
+        );
+    }
+
+    public static Custom toCustom(CustomDTO custom) {
+        return new Custom(
+                custom.getResId(),
+                custom.getStudentId(),
+                custom.getRoomId(),
+                custom.getStudentName(),
+                custom.getRoomType(),
+                custom.getKeymoney(),
+                custom.getAmount()
+        );
+    }
 
     public static StudentDTO fromStudent(Student student) {
         return new StudentDTO(

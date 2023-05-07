@@ -1,6 +1,7 @@
 package lk.ijse.hibernate.hostel.entity;
 
 import lombok.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
@@ -12,6 +13,8 @@ import java.util.List;
 @ToString
 @Entity
 @Transactional
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Room implements SuperEntity{
     @Id
     private String roomTypeId;
@@ -19,6 +22,7 @@ public class Room implements SuperEntity{
     private double keyMoney;
     private int qty;
     @OneToMany(mappedBy = "room",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private List<Reservation> reservations;
 
     public Room(String roomTypeId, String type, double keyMoney, int qty) {

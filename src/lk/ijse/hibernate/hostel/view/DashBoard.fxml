@@ -16,15 +16,15 @@
                   <Image url="@../assests/2188.jpg" />
                </image>
             </ImageView>
-            <JFXButton layoutX="8.0" layoutY="367.0" onAction="#roomManagementbtnOnAction" prefHeight="67.0" prefWidth="251.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="                 Room Management">
+            <JFXButton layoutX="5.0" layoutY="293.0" onAction="#roomManagementbtnOnAction" prefHeight="67.0" prefWidth="251.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="                 Room Management">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font></JFXButton>
-            <JFXButton layoutX="7.0" layoutY="493.0" onAction="#roomResetvationbtnOnAction" prefHeight="67.0" prefWidth="251.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="              Room Reservation ">
+            <JFXButton layoutX="7.0" layoutY="387.0" onAction="#roomResetvationbtnOnAction" prefHeight="67.0" prefWidth="251.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="              Room Reservation ">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font></JFXButton>
-            <JFXButton layoutX="4.0" layoutY="234.0" onAction="#StudentManagementOnAction" prefHeight="67.0" prefWidth="251.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="              Student Management">
+            <JFXButton layoutX="10.0" layoutY="201.0" onAction="#StudentManagementOnAction" prefHeight="67.0" prefWidth="251.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="              Student Management">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font></JFXButton>
@@ -39,15 +39,15 @@
                </font>
             </Label>
             <ImageView fitHeight="50.0" fitWidth="56.0" layoutX="14.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fitHeight="46.0" fitWidth="56.0" layoutX="29.0" layoutY="502.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="46.0" fitWidth="56.0" layoutX="29.0" layoutY="396.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assests/img_3.png" />
                </image></ImageView>
-            <ImageView fitHeight="50.0" fitWidth="56.0" layoutX="21.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="56.0" layoutX="18.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assests/img_2.png" />
                </image></ImageView>
-            <ImageView fitHeight="50.0" fitWidth="56.0" layoutX="14.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="56.0" layoutX="20.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assests/img_1.png" />
                </image></ImageView>
@@ -56,7 +56,12 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="4.0" layoutY="583.0" onAction="#btnUserMngOnAction" prefHeight="67.0" prefWidth="251.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="User Management">
+            <JFXButton layoutX="8.0" layoutY="474.0" onAction="#btnUserMngOnAction" prefHeight="67.0" prefWidth="251.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="User Management">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="8.0" layoutY="561.0" onAction="#btnViewNotPaidsOnAction" prefHeight="67.0" prefWidth="251.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="View not Paid">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

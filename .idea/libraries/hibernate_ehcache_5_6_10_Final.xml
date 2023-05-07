@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="hibernate-ehcache-5.6.10.Final">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/hibernate/hostel/lib/hibernate-ehcache-5.6.10.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,12 +1,22 @@
 package lk.ijse.hibernate.hostel;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import lk.ijse.hibernate.hostel.entity.Custom;
+import lk.ijse.hibernate.hostel.repository.custom.CustomRepository;
+import lk.ijse.hibernate.hostel.repository.custom.impl.CustomRepositoryImple;
+import lk.ijse.hibernate.hostel.util.FactoryConfiguration;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 
 
 public class AppInitializer extends Application {
@@ -22,6 +32,12 @@ public class AppInitializer extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Login");
         primaryStage.centerOnScreen();
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                System.exit(0);
+            }
+        });
         primaryStage.show();
     }
 
@@ -36,7 +52,17 @@ public class AppInitializer extends Application {
 
     public static void main(String[] args) {
         launch(args);
+      /*  Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
 
+        CustomRepository customRepository = new CustomRepositoryImple();
+        List<Custom> allNotPaidList = customRepository.getAllNotPaidList(session);
+
+        System.out.println(allNotPaidList.get(0).getStudentId());
+
+        transaction.commit();
+        session.close();
+*/
  /*       Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         *//*--------------------------------------------------------------------------*//*

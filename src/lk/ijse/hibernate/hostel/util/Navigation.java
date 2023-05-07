@@ -17,6 +17,11 @@ public class Navigation {
         window.setResizable(false);
 
         switch (route) {
+            case VIEW_NOT_PAID:
+                window.setTitle("Not Paid By..");
+                initUI("ViewNotPaidForm.fxml");
+                break;
+
             case USER:
                 window.setTitle("User Form");
                 initUI("User.fxml");
